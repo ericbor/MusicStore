@@ -1,16 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: HP
-  Date: 28.02.2015
-  Time: 11:56
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<aside id="sidebarB">
+  <h1>New Releases</h1>
+  <img src="<c:url value='/images/8601_cover_t.jpg'/>" width="80" alt="The Beatles - The Alternative Abbey Road - Album Cover">
+  <h2><a href="catalog/product/beatles" class="no_underline">The Beatles - The Alternative Abbey Road</a></h2>
+  <p class="news_item">'Abbey Road' is loose and relatively stress-free.
+    This great album reconstructs 'Abbey Road' from alternate takes,
+    offering an eye-opening glimpse of the band's meticulous recording process.</p>
+</aside>
