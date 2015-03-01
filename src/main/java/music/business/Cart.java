@@ -1,4 +1,4 @@
-package main.java.music.business;
+package music.business;
 
 import java.util.*;
 import java.io.Serializable;
@@ -8,7 +8,7 @@ public class Cart implements Serializable {
     private List<LineItem> items;
 
     public Cart() {
-        items = new ArrayList<>();
+        items = new ArrayList<LineItem>();
     }
 
     public void setItems(List<LineItem> lineItems) {

@@ -1,4 +1,4 @@
-package main.java.music.business;
+package music.business;
 
 import java.util.*;
 import java.text.*;

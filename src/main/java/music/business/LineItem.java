@@ -1,4 +1,4 @@
-package main.java.music.business;
+package music.business;
 
 import java.text.NumberFormat;
 import java.io.Serializable;
