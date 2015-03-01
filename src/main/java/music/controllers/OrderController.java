@@ -53,8 +53,7 @@ public class OrderController extends HttpServlet {
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
-    private String showCart(HttpServletRequest request,
-                            HttpServletResponse response) {
+    private String showCart(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart == null || cart.getCount() == 0) {
@@ -81,8 +80,7 @@ public class OrderController extends HttpServlet {
         return defaultURL;
     }
 
-    private String updateItem(HttpServletRequest request,
-                              HttpServletResponse response) {
+    private String updateItem(HttpServletRequest request, HttpServletResponse response) {
         String quantityString = request.getParameter("quantity");
         String productCode = request.getParameter("productCode");
         HttpSession session = request.getSession();
@@ -108,8 +106,7 @@ public class OrderController extends HttpServlet {
         return defaultURL;
     }
 
-    private String removeItem(HttpServletRequest request,
-                              HttpServletResponse response) {
+    private String removeItem(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         String productCode = request.getParameter("productCode");
@@ -122,8 +119,7 @@ public class OrderController extends HttpServlet {
         return defaultURL;
     }
 
-    private String checkUser(HttpServletRequest request,
-                             HttpServletResponse response) {
+    private String checkUser(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -150,8 +146,7 @@ public class OrderController extends HttpServlet {
         return url;
     }
 
-    private String processUser(HttpServletRequest request,
-                               HttpServletResponse response) {
+    private String processUser(HttpServletRequest request, HttpServletResponse response) {
 
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -202,8 +197,7 @@ public class OrderController extends HttpServlet {
         return "/order/displayInvoice";
     }
 
-    private String displayInvoice(HttpServletRequest request,
-                                  HttpServletResponse response) {
+    private String displayInvoice(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -221,8 +215,7 @@ public class OrderController extends HttpServlet {
         return "/cart/invoice.jsp";
     }
 
-    private String completeOrder(HttpServletRequest request,
-                                 HttpServletResponse response) {
+    private String completeOrder(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
         Invoice invoice = (Invoice) session.getAttribute("invoice");

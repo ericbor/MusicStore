@@ -4,7 +4,7 @@
 <!-- begin middle column -->
 
 <section class="cart">
-  <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
   <h1>Your cart</h1>
   <c:choose>
@@ -23,7 +23,7 @@
         <c:forEach var="item" items="${cart.items}">
           <tr class="cart_row">
             <td>
-              <form action="<c:url value='/order/updateItem'/>" method="post">
+              <form action="" method="post">
                 <input type="hidden" name="productCode"
                        value="<c:out value='${item.product.code}'/>">
                 <input type=text name="quantity"
@@ -31,11 +31,12 @@
                 <input type="submit" value="Update">
               </form>
             </td>
+
             <td>${item.product.description}</td>
             <td>${item.product.priceCurrencyFormat}</td>
             <td>${item.totalCurrencyFormat}</td>
             <td>
-              <form action="<c:url value='/order/removeItem'/>" method="post">
+              <form action="" method="post">
                 <input type="hidden" name="productCode"
                        value="<c:out value='${item.product.code}'/>">
                 <input type="submit" value="Remove">

@@ -5,14 +5,14 @@
 <head>
     <meta charset="utf-8">
     <title>Some Music Store</title>
-    <link rel="shortcut icon" href="<c:url value ='/favicon.png'/>"/>
+    <link rel="shortcut icon" href="<c:url value ='/images/favicon.png'/>"/>
     <link rel="stylesheet" href="<c:url value ='/styles/main.css'/>"/>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 </head>
 
 <body>
 <header>
-    <img src="<c:url value='/logo.png'/>" alt="Some Music Store logo" width="80">
+    <img src="<c:url value='/images/logo.png'/>" alt="Some Music Store logo" width="80">
 
     <h1>Some Music Store</h1>
 
