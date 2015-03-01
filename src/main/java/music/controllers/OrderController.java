@@ -14,9 +14,7 @@ public class OrderController extends HttpServlet {
     private static final String defaultURL = "/cart/cart.jsp";
 
     @Override
-    public void doPost(HttpServletRequest request,
-                       HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
         String url = "";
         if (requestURI.endsWith("/addItem")) {
@@ -44,8 +42,7 @@ public class OrderController extends HttpServlet {
     }
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
         String url = defaultURL;
         if (requestURI.endsWith("/showCart")) {
@@ -53,9 +50,7 @@ public class OrderController extends HttpServlet {
         } else if (requestURI.endsWith("/checkUser")) {
             url = checkUser(request, response);
         }
-        getServletContext()
-                .getRequestDispatcher(url)
-                .forward(request, response);
+        getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
     private String showCart(HttpServletRequest request,
@@ -70,8 +65,7 @@ public class OrderController extends HttpServlet {
         return defaultURL;
     }
 
-    private String addItem(HttpServletRequest request,
-                           HttpServletResponse response) {
+    private String addItem(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart == null)
