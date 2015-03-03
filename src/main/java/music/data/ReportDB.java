@@ -32,8 +32,8 @@ public class ReportDB {
         row.createCell(10).setCellValue("UserID");
 
         // create the data rows
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         Statement statement = null;
         ResultSet rs = null;
         String query = "SELECT * FROM User "
@@ -64,7 +64,7 @@ public class ReportDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closeStatement(statement);
-            //pool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 
@@ -90,8 +90,8 @@ public class ReportDB {
         row.createCell(4).setCellValue("LastName");
 
         // create the data rows
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         Statement statement = null;
         ResultSet rs = null;
         String query
@@ -128,7 +128,7 @@ public class ReportDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closeStatement(statement);
-            //pool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 }

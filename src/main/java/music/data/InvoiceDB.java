@@ -9,8 +9,8 @@ package music.data;
 public class InvoiceDB {
 
     public static void insert(Invoice invoice) {
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -43,14 +43,14 @@ public class InvoiceDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            //pool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 
     // This method sets the Invoice.IsProcessed column to 'y'
     public static void update(Invoice invoice) {
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -66,13 +66,13 @@ public class InvoiceDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            //pool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 
     public static ArrayList<Invoice> selectUnprocessedInvoices() {
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -114,7 +114,7 @@ public class InvoiceDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            //pool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 }

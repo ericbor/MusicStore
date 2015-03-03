@@ -6,8 +6,8 @@ import music.business.*;
 public class UserDB {
 
     public static void insert(User user) {
-        //ConnectionPool pool = new ConnectionPool();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -57,8 +57,8 @@ public class UserDB {
     }
 
     public static void update(User user) {
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -98,13 +98,13 @@ public class UserDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            //ConnectionPool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 
     public static User selectUser(String email) {
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -139,13 +139,13 @@ public class UserDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            //ConnectionPool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 
     public static boolean emailExists(String EmailAddress) {
-        //ConnectionPool pool = new ConnectionPool();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -162,7 +162,7 @@ public class UserDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            //ConnectionPool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 }

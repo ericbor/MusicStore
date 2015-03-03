@@ -9,8 +9,8 @@ public class LineItemDB {
 
     //This method adds one lineItem to the LineItems table.
     public static long insert(long invoiceID, LineItem lineItem) {
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -19,7 +19,7 @@ public class LineItemDB {
         try {
             ps = connection.prepareStatement(query);
             ps.setLong(1, invoiceID);
-            ps.setLong(2, lineItem.getProduct().getProductID());
+            ps.setLong(2, lineItem.getProduct().getId());
             ps.setInt(3, lineItem.getQuantity());
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -28,14 +28,14 @@ public class LineItemDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            //pool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 
     //This method returns null if a record isn't found.
     public static List<LineItem> selectLineItems(long invoiceID) {
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -61,7 +61,7 @@ public class LineItemDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            //pool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 }

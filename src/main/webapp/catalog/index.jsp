@@ -9,7 +9,8 @@
   <h1>The Fresh Corn Records Catalog</h1>
 
   <h2>86 (the band)</h2>
-  <p><a href="8601">True Life Songs and Pictures</a></p>
+  <p><a href="8601" action="<c:url value='/catalog/showProduct'/>">True Life Songs and Pictures</a></p>
+
 
   <h2 class="top_margin">Paddlefoot</h2>
   <p><a href="pf01">Paddlefoot (the first album)</a></p>

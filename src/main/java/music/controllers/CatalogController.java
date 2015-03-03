@@ -71,7 +71,7 @@ public class CatalogController extends HttpServlet {
                 return "/catalog/register.jsp";
             } else {
                 user = UserDB.selectUser(emailAddress);
-                // if a user for that email isn't in the database,
+                // if a user for that email isn't in the database, 
                 // go to the registration page
                 if (user == null) {
                     return "/catalog/register.jsp";

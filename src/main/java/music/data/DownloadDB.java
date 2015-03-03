@@ -7,8 +7,8 @@ import music.business.*;
 public class DownloadDB {
 
     public static long insert(Download download) {
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = ConnectionPool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -27,7 +27,7 @@ public class DownloadDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            //pool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 }

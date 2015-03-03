@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--@elvariable id="product" type="music.business.Product"--%>
+
 <aside id="sidebarB">
   <form method="post" action="<c:url value='/order/addItem'/>">
     <input type="hidden" name="productCode" value="${product.code}">
