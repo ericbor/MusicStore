@@ -1,4 +1,4 @@
-<aside id="sidebarA">
+<aside>
     <nav>
       <ul>
         <li><a href="${absolutePath}">

@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<aside id="sidebarA">
+<div class="container"><div class="row"><div class="col-md-8">
     <nav>
       <ul>
-          <li><a class="current" href="<c:url value='/' />">
+          <li><a href="<c:url value='/' />">
                   Home</a></li>
           <li><a href="<c:url value='/catalog' />">
                   Browse Catalog</a></li>
@@ -12,4 +12,4 @@
                   Customer Service</a></li>
       </ul>
     </nav>
-</aside>
+</div></div> </div>
