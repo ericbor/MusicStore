@@ -33,7 +33,7 @@ public class User implements Serializable {
         creditCardNumber = "";
         creditCardExpirationDate = "";
     }
-
+    
     public Long getId() {
         return userId;
     }
@@ -123,30 +123,6 @@ public class User implements Serializable {
         return country;
     }
 
-    public void setCreditCardType(String creditCartType) {
-        this.creditCardType = creditCartType;
-    }
-
-    public String getCreditCardType() {
-        return creditCardType;
-    }
-
-    public void setCreditCardNumber(String creditCardNumber) {
-        this.creditCardNumber = creditCardNumber;
-    }
-
-    public String getCreditCardNumber() {
-        return creditCardNumber;
-    }
-
-    public void setCreditCardExpirationDate(String creditCardExpirationDate) {
-        this.creditCardExpirationDate = creditCardExpirationDate;
-    }
-
-    public String getCreditCardExpirationDate() {
-        return creditCardExpirationDate;
-    }
-
     // this works, but it mixes the Model and the View
     public String getAddressHTMLFormat() {
         String address = firstName + " " + lastName + "<br>";
@@ -169,5 +145,29 @@ public class User implements Serializable {
                 + country;
 
         return address;
+    }
+
+    public void setCreditCardType(String creditCartType) {
+        this.creditCardType = creditCartType;
+    }
+
+    public String getCreditCardType() {
+        return creditCardType;
+    }
+
+    public void setCreditCardNumber(String creditCardNumber) {
+        this.creditCardNumber = creditCardNumber;
+    }
+
+    public String getCreditCardNumber() {
+        return creditCardNumber;
+    }
+
+    public void setCreditCardExpirationDate(String creditCardExpirationDate) {
+        this.creditCardExpirationDate = creditCardExpirationDate;
+    }
+
+    public String getCreditCardExpirationDate() {
+        return creditCardExpirationDate;
     }
 }

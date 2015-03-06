@@ -21,7 +21,7 @@ public class ReportDB {
         row = sheet.createRow(2);
         row.createCell(0).setCellValue("LastName");
         row.createCell(1).setCellValue("FirstName");
-        row.createCell(2).setCellValue("Email");
+        row.createCell(2).setCellValue("EmailAddress");
         row.createCell(3).setCellValue("CompanyName");
         row.createCell(4).setCellValue("Address1");
         row.createCell(5).setCellValue("Address2");
@@ -46,7 +46,7 @@ public class ReportDB {
                 row = sheet.createRow(i);
                 row.createCell(0).setCellValue(rs.getString("LastName"));
                 row.createCell(1).setCellValue(rs.getString("FirstName"));
-                row.createCell(2).setCellValue(rs.getString("Email"));
+                row.createCell(2).setCellValue(rs.getString("EmailAddress"));
                 row.createCell(3).setCellValue(rs.getString("CompanyName"));
                 row.createCell(4).setCellValue(rs.getString("Address1"));
                 row.createCell(5).setCellValue(rs.getString("Address2"));
@@ -85,7 +85,7 @@ public class ReportDB {
         row = sheet.createRow(5);
         row.createCell(0).setCellValue("DownloadDate");
         row.createCell(1).setCellValue("ProductCode");
-        row.createCell(2).setCellValue("Email");
+        row.createCell(2).setCellValue("EmailAddress");
         row.createCell(3).setCellValue("FirstName");
         row.createCell(4).setCellValue("LastName");
 
@@ -97,7 +97,7 @@ public class ReportDB {
         String query
                 = "SELECT DownloadDate, "
                 + "   Download.ProductCode, "
-                + "   Email, FirstName, LastName "
+                + "   EmailAddress, FirstName, LastName "
                 + "FROM User "
                 + "   INNER JOIN Download ON User.UserID = Download.UserID "
                 + "WHERE DownloadDate >= '" + startDate + "' "
@@ -113,7 +113,7 @@ public class ReportDB {
                 row = sheet.createRow(i);
                 row.createCell(0).setCellValue(rs.getDate("DownloadDate").toString());
                 row.createCell(1).setCellValue(rs.getString("ProductCode"));
-                row.createCell(2).setCellValue(rs.getString("Email"));
+                row.createCell(2).setCellValue(rs.getString("EmailAddress"));
                 row.createCell(3).setCellValue(rs.getString("FirstName"));
                 row.createCell(4).setCellValue(rs.getString("LastName"));
                 total++;

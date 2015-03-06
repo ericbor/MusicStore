@@ -9,12 +9,12 @@ import music.data.*;
 import music.util.CookieUtil;
 
 public class CatalogController extends HttpServlet {
-
+    
     @Override
-    public void doGet(HttpServletRequest request,
-                      HttpServletResponse response)
+    public void doGet(HttpServletRequest request, 
+            HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         String requestURI = request.getRequestURI();
         String url;
         if (requestURI.endsWith("/listen")) {
@@ -23,13 +23,13 @@ public class CatalogController extends HttpServlet {
             url = showProduct(request, response);
         }
         getServletContext()
-                .getRequestDispatcher(url)
-                .forward(request, response);
+            .getRequestDispatcher(url)
+            .forward(request, response);
     }
 
     @Override
     public void doPost(HttpServletRequest request,
-                       HttpServletResponse response)
+            HttpServletResponse response)
             throws ServletException, IOException {
 
         String requestURI = request.getRequestURI();
@@ -38,12 +38,12 @@ public class CatalogController extends HttpServlet {
             url = registerUser(request, response);
         }
         getServletContext()
-                .getRequestDispatcher(url)
-                .forward(request, response);
+            .getRequestDispatcher(url)
+            .forward(request, response);
     }
-
-    private String showProduct(HttpServletRequest request,
-                               HttpServletResponse response) {
+    
+    private String showProduct(HttpServletRequest request, 
+            HttpServletResponse response) {
         String productCode = request.getPathInfo();
         // This should never be null. But just to be safe.
         if (productCode != null) {
@@ -51,14 +51,14 @@ public class CatalogController extends HttpServlet {
             Product product = ProductDB.selectProduct(productCode);
             HttpSession session = request.getSession();
             session.setAttribute("product", product);
-        }
+        }        
         return "/catalog/" + productCode + "/index.jsp";
     }
-
-    private String listen(HttpServletRequest request,
-                          HttpServletResponse response) {
-
-        HttpSession session = request.getSession();
+    
+    private String listen(HttpServletRequest request, 
+            HttpServletResponse response) {
+        
+        HttpSession session = request.getSession();        
         User user = (User) session.getAttribute("user");
 
         // if the User object doesn't exist, check for the email cookie
@@ -79,19 +79,19 @@ public class CatalogController extends HttpServlet {
                 session.setAttribute("user", user);
             }
         }
-
+        
         Product product = (Product) session.getAttribute("product");
 
         Download download = new Download();
         download.setUser(user);
-        download.setProductCode(product.getCode());
+        download.setProductCode(product.getCode());        
         DownloadDB.insert(download);
-
+        
         return "/catalog/" + product.getCode() + "/sound.jsp";
-    }
-
+    }  
+    
     private String registerUser(HttpServletRequest request,
-                                HttpServletResponse response) {
+            HttpServletResponse response) {
 
         HttpSession session = request.getSession();
         String firstName = request.getParameter("firstName");
@@ -103,13 +103,13 @@ public class CatalogController extends HttpServlet {
             user = UserDB.selectUser(email);
             user.setFirstName(firstName);
             user.setLastName(lastName);
-            user.setEmail(email);
+            user.setEmail(email);            
             UserDB.update(user);
         } else {
             user = new User();
             user.setFirstName(firstName);
             user.setLastName(lastName);
-            user.setEmail(email);
+            user.setEmail(email);            
             UserDB.insert(user);
         }
 
@@ -119,9 +119,9 @@ public class CatalogController extends HttpServlet {
         emailCookie.setMaxAge(60 * 60 * 24 * 365 * 2);
         emailCookie.setPath("/");
         response.addCookie(emailCookie);
-
+        
         Product product = (Product) session.getAttribute("product");
         String url = "/catalog/" + product.getCode() + "/sound.jsp";
         return url;
-    }
+    }    
 }

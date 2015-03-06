@@ -1,10 +1,9 @@
 package music.data;
 
+import java.sql.*;
+import java.util.*;
 
-        import java.sql.*;
-        import java.util.*;
-
-        import music.business.*;
+import music.business.*;
 
 public class InvoiceDB {
 
@@ -69,7 +68,7 @@ public class InvoiceDB {
             pool.freeConnection(connection);
         }
     }
-
+    
     public static ArrayList<Invoice> selectUnprocessedInvoices() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -92,7 +91,7 @@ public class InvoiceDB {
             ArrayList<Invoice> unprocessedInvoices = new ArrayList<Invoice>();
             while (rs.next()) {
                 //Create a User object
-                User user = UserDB.selectUser(rs.getString("Email"));
+                User user = UserDB.selectUser(rs.getString("EmailAddress"));
 
                 //Get line items
                 long invoiceID = rs.getLong("Invoice.InvoiceID");

@@ -4,13 +4,13 @@
 <!-- start the middle column -->
 
 <section>
-  <jsp:include page="/includes/product_table.jsp" />
-  <p class="clear_both">
+    <jsp:include page="/includes/product_table.jsp" />
+    <p class="clear_both">
     The debut album from Joe Rut rambles from Byrds-esque folk pop of "Filter" to
     the country sounds of "Find My Way Marie" to psychedelic Brit-pop tunes like
     "A Place In All This." This well-crafted album is unique and cohesive, revealing
     its many layers on repeated listens.
-  </p>
+    </p>
 </section>
 
 <!-- end the middle column -->

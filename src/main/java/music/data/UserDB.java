@@ -1,6 +1,7 @@
 package music.data;
 
 import java.sql.*;
+
 import music.business.*;
 
 public class UserDB {
@@ -33,9 +34,9 @@ public class UserDB {
             ps.setString(11, user.getCreditCardType());
             ps.setString(12, user.getCreditCardNumber());
             ps.setString(13, user.getCreditCardExpirationDate());
-
+            
             ps.executeUpdate();
-
+            
             //Get the user ID from the last INSERT statement.
             String identityQuery = "SELECT @@IDENTITY AS IDENTITY";
             Statement identityStatement = connection.createStatement();
@@ -52,7 +53,7 @@ public class UserDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            //ConnectionPool.freeConnection(connection);
+            pool.freeConnection(connection);
         }
     }
 
@@ -120,7 +121,7 @@ public class UserDB {
                 user.setId(rs.getLong("UserID"));
                 user.setFirstName(rs.getString("FirstName"));
                 user.setLastName(rs.getString("LastName"));
-                user.setEmail(rs.getString("EmailAddress"));
+                user.setEmail(rs.getString("Email"));
                 user.setCompanyName(rs.getString("CompanyName"));
                 user.setAddress1(rs.getString("Address1"));
                 user.setAddress2(rs.getString("Address2"));
@@ -142,8 +143,8 @@ public class UserDB {
             pool.freeConnection(connection);
         }
     }
-
-    public static boolean emailExists(String EmailAddress) {
+    
+    public static boolean emailExists(String email) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -153,7 +154,7 @@ public class UserDB {
                 + "WHERE EmailAddress = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, EmailAddress);
+            ps.setString(1, email);
             rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {
@@ -164,5 +165,5 @@ public class UserDB {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
-    }
+    }    
 }

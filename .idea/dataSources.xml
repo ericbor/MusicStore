@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1241799598">
-    <data-source source="LOCAL" name="jdbc/musicDB" uuid="0658bbcd-d3f1-46df-ae49-d791a5c5ae9e">
+  <component name="DataSourceManagerImpl" format="xml" hash="1574771229">
+    <data-source source="LOCAL" name="jdbc/musicDB" uuid="7e0aefea-bf0a-48ff-a7c7-d97f2d273b75">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>

@@ -7,14 +7,14 @@ import javax.mail.internet.*;
 public class MailUtil {
 
     public static void sendMail(String to, String from,
-                                String subject, String body, boolean bodyIsHTML)
+            String subject, String body, boolean bodyIsHTML)
             throws MessagingException {
-
+        
         // 1 - get a mail session
         Properties props = new Properties();
         //props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.host", "localhost");
-        //props.put("mail.smtp.port", 25);
+        //props.put("mail.smtp.port", 25);        
         Session session = Session.getDefaultInstance(props);
         session.setDebug(true);
 

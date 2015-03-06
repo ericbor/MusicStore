@@ -108,8 +108,7 @@ public class AdminController extends HttpServlet {
         return "/adminController/displayInvoices";
     }
     
-    private void displayReport(HttpServletRequest request,
-            HttpServletResponse response) throws IOException {
+    private void displayReport(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String reportName = request.getParameter("reportName");
         String startDate = request.getParameter("startDate");
@@ -123,13 +122,11 @@ public class AdminController extends HttpServlet {
         } else {
             workbook = new HSSFWorkbook();
         }
-
-
-        response.setHeader("content-disposition", "attachment; filename=" + reportName + ".xls");
-
-//        try (OutputStream out = response.getOutputStream()) {
-//            workbook.write(out);
-//        }
-
+        
+        response.setHeader("content-disposition", 
+                "attachment; filename=" + reportName + ".xls");
+        //try (OutputStream out = response.getOutputStream()) {
+           // workbook.write(out);
+        //}
     }
 }

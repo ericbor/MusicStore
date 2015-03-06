@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
 
-    private Long productId;
+    private Long productId;    
     private String code;
     private String description;
     private double price;
@@ -37,13 +37,13 @@ public class Product implements Serializable {
     }
 
     public String getArtistName() {
-        String artistName =
+        String artistName = 
                 description.substring(0, description.indexOf(" - "));
         return artistName;
     }
 
     public String getAlbumName() {
-        String albumName =
+        String albumName = 
                 description.substring(description.indexOf(" - ") + 3);
         return albumName;
     }
