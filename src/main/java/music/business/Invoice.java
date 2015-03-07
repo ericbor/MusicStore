@@ -40,9 +40,10 @@ public class Invoice implements Serializable {
     }
 
     public String getInvoiceDateDefaultFormat() {
-        DateFormat dateFormat = DateFormat.getDateInstance();
-        String invoiceDateFormatted = dateFormat.format(invoiceDate);
-        return invoiceDateFormatted;
+        //DateFormat dateFormat = DateFormat.getDateInstance();
+        //String invoiceDateFormatted = dateFormat.format(invoiceDate);
+        return new SimpleDateFormat("dd/MM/yy").format(invoiceDate);
+
     }
 
     public void setInvoiceNumber(Long invoiceNumber) {
@@ -70,8 +71,9 @@ public class Invoice implements Serializable {
     }
 
     public String getInvoiceTotalCurrencyFormat() {
+        Locale usa = new Locale("en", "US");
         double total = this.getInvoiceTotal();
-        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        NumberFormat currency = NumberFormat.getCurrencyInstance(usa);
         String formattedTotal = currency.format(total);
         return formattedTotal;
     }
