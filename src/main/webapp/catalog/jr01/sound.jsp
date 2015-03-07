@@ -7,22 +7,26 @@
             <div class="col-md-10">
                 <jsp:include page="/includes/product_table.jsp" />
 
-                <p>To listen to a track, click on the song's link.</p>
+                <div class="col-md-5">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">To listen to a track, click on the song's link.</a>
+                        <a href="/musicStore/sound/jr01/filter.mp3" class="list-group-item disabled">1. Filter</a>
+                        <a href="#" class="list-group-item">2. Find My Way Marie</a>
+                        <a href="#" class="list-group-item">3. Hole</a>
+                        <a href="#" class="list-group-item">4. 1400 Years</a>
+                        <a href="/musicStore/sound/jr01/so_long.mp3" class="list-group-item disabled">5. So Long Lazy Ray</a>
+                        <a href="#" class="list-group-item">6. A Tuna Is a Damn Big Fish</a>
+                        <a href="#" class="list-group-item">7. El Dorado</a>
+                        <a href="#" class="list-group-item">8. Dream of You</a>
+                        <a href="#" class="list-group-item">9. This Sea Is Full of Monsters</a>
+                        <a href="#" class="list-group-item">10. A Place in All This</a>
+                        <a href="#" class="list-group-item">11. GTTSWMD</a>
+                        <a href="#" class="list-group-item">12. AM Land</a>
+                        <a href="#" class="list-group-item">13. Whole Month of Sundays</a>
+                        <a href="#" class="list-group-item">14. Penny From a Poor Man</a>
+                    </div>
+                </div>
 
-                <p>1. <a href="/musicStore/sound/jr01/filter.mp3">Filter</a></p>
-                <p>2. Find My Way Marie</p>
-                <p>3. Hole</p>
-                <p>4. 1400 Years</p>
-                <p>5. <a href="/musicStore/sound/jr01/so_long.mp3">So Long Lazy Ray</a></p>
-                <p>6. A Tuna Is a Damn Big Fish</p>
-                <p>7. El Dorado</p>
-                <p>8. Dream of You</p>
-                <p>9. This Sea Is Full of Monsters</p>
-                <p>10. A Place in All This</p>
-                <p>11. GTTSWMD</p>
-                <p>12. AM Land</p>
-                <p>13. Whole Month of Sundays</p>
-                <p>14. Penny From a Poor Man</p>
             </div>
 
             <jsp:include page="/includes/column_right_buttons.jsp" />

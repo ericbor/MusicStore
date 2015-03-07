@@ -7,19 +7,24 @@
             <div class="col-md-10">
                 <jsp:include page="/includes/product_table.jsp" />
 
-                <p>To listen to a track, click on the song's link.</p>
+                <div class="col-md-5">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">To listen to a track, click on the song's link.</a>
+                    <a href="#" class="list-group-item">1. How to Get There</a>
+                    <a href="/musicStore/sound/8601/star.mp3" class="list-group-item disabled">2. You Are a Star</a>
+                    <a href="/musicStore/sound/8601/no_difference.mp3" class="list-group-item disabled">3. Don't Make No Difference</a>
+                    <a href="#" class="list-group-item">4. Unidentified Fiddling Object</a>
+                    <a href="#" class="list-group-item">5. Beat Up Old Car</a>
+                    <a href="#" class="list-group-item">6. Wildflowers</a>
+                    <a href="#" class="list-group-item">7. What You Whistle When You Walk Home</a>
+                    <a href="#" class="list-group-item">8. Three Sheets to the Wind</a>
+                    <a href="#" class="list-group-item">9. Singin' Drunk</a>
+                    <a href="#" class="list-group-item">10. Don't Close Your Eyes</a>
+                    <a href="#" class="list-group-item">11. Morning Sun</a>
+                </div>
+                </div>
 
-                <p>1. How to Get There</p>
-                <p>2. <a href="/musicStore/sound/8601/star.mp3">You Are a Star</a></p>
-                <p>3. <a href="/musicStore/sound/8601/no_difference.mp3">Don't Make No Difference</a></p>
-                <p>4. Unidentified Fiddling Object</p>
-                <p>5. Beat Up Old Car</p>
-                <p>6. Wildflowers</p>
-                <p>7. What You Whistle When You Walk Home</p>
-                <p>8. Three Sheets to the Wind</p>
-                <p>9. Singin' Drunk</p>
-                <p>10. Don't Close Your Eyes</p>
-                <p>11. Morning Sun</p>
+
             </div>
 
             <jsp:include page="/includes/column_right_buttons.jsp" />
