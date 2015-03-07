@@ -9,7 +9,7 @@
                 <p>Your cart is empty.</p>
             </c:when>
             <c:otherwise>
-                <table class="table">
+                <table class="table table-hover ">
                     <tr>
                         <th>Qty</th>
                         <th>Description</th>
@@ -21,11 +21,9 @@
                         <tr class="cart_row">
                             <td>
                                 <form action="<c:url value='/order/updateItem'/>" method="post">
-                                    <input type="hidden" name="productCode"
-                                           value="<c:out value='${item.product.code}'/>">
-                                    <input type=text name="quantity"
-                                           value="<c:out value='${item.quantity}'/>" id="quantity">
-                                    <input type="submit" value="Update">
+                                    <input type="hidden" name="productCode" value="<c:out value='${item.product.code}'/>">
+                                    <input type=text name="quantity" value="<c:out value='${item.quantity}'/>" id="quantity">
+                                    <button type="submit" value="Update" class="btn btn-info">Update</button>
                                 </form>
                             </td>
                             <td>${item.product.description}</td>
@@ -33,15 +31,14 @@
                             <td>${item.totalCurrencyFormat}</td>
                             <td>
                                 <form action="<c:url value='/order/removeItem'/>" method="post">
-                                    <input type="hidden" name="productCode"
-                                           value="<c:out value='${item.product.code}'/>">
-                                    <input type="submit" value="Remove">
+                                    <input type="hidden" name="productCode" value="<c:out value='${item.product.code}'/>">
+                                    <button type="submit" value="Remove" class="btn btn-danger">Remove</button>
                                 </form>
                             </td>
                         </tr>
                     </c:forEach>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="5">
                             <p><b>To change the quantity for an item</b>, enter the new quantity
                                 and click on the Update button.</p>
                             <p><b>To remove an item</b>, click on the Remove button.</p>
@@ -53,13 +50,13 @@
         </c:choose>
 
         <form action="<c:url value='/catalog'/>" method="get" id="float_left">
-            <input type="submit" value="Continue Shopping">
+            <button type="submit" value="Continue Shopping" class="btn btn-success">Continue Shopping</button>
         </form>
 
         <c:if test="${emptyCart == null}">
             <!-- Connection is NOT SECURE.  For testing only. -->
             <form action="<c:url value='/order/checkUser'/>" method="post">
-                <input type="submit" value="Checkout">
+                <button type="submit" value="Checkout" class="btn btn-success">Checkout</button>
             </form>
             <!-- Connection is SECURE.  Before you can use it, you need to configure
             a secure connection on your system as described in chapter 15, comment
