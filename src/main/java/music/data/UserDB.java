@@ -159,7 +159,6 @@ public class UserDB {
             return rs.next();
         } catch (SQLException e) {
             System.err.println(e);
-            System.out.println("I LOVE FUCKING CHIKEN");
             return false;
         } finally {
             DBUtil.closeResultSet(rs);

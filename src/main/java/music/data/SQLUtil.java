@@ -4,8 +4,7 @@ import java.sql.*;
 
 public class SQLUtil {
 
-    public static String getHtmlRows(ResultSet results)
-            throws SQLException {
+    public static String getHtmlRows(ResultSet results) throws SQLException {
         StringBuilder htmlRows = new StringBuilder();
         ResultSetMetaData metaData = results.getMetaData();
         int columnCount = metaData.getColumnCount();
