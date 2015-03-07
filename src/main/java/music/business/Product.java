@@ -2,6 +2,8 @@ package music.business;
 
 import java.text.NumberFormat;
 import java.io.Serializable;
+import java.util.Currency;
+import java.util.Locale;
 
 public class Product implements Serializable {
 
@@ -57,7 +59,8 @@ public class Product implements Serializable {
     }
 
     public String getPriceCurrencyFormat() {
-        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        Locale usa = new Locale("en", "US");
+        NumberFormat currency = NumberFormat.getCurrencyInstance(usa);
         return currency.format(price);
     }
 

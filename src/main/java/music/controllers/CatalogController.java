@@ -55,8 +55,7 @@ public class CatalogController extends HttpServlet {
         return "/catalog/" + productCode + "/index.jsp";
     }
     
-    private String listen(HttpServletRequest request, 
-            HttpServletResponse response) {
+    private String listen(HttpServletRequest request, HttpServletResponse response) {
         
         HttpSession session = request.getSession();        
         User user = (User) session.getAttribute("user");
@@ -64,8 +63,7 @@ public class CatalogController extends HttpServlet {
         // if the User object doesn't exist, check for the email cookie
         if (user == null) {
             Cookie[] cookies = request.getCookies();
-            String emailAddress =
-                    CookieUtil.getCookieValue(cookies, "emailCookie");
+            String emailAddress = CookieUtil.getCookieValue(cookies, "emailCookie");
             // if the email cookie doesn't exist, go to the registration page
             if (emailAddress == null || emailAddress.equals("")) {
                 return "/catalog/register.jsp";

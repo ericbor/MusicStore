@@ -2,6 +2,7 @@ package music.business;
 
 import java.text.NumberFormat;
 import java.io.Serializable;
+import java.util.Locale;
 
 public class LineItem implements Serializable {
 
@@ -37,12 +38,14 @@ public class LineItem implements Serializable {
     }
 
     public double getTotal() {
+
         double total = product.getPrice() * quantity;
         return total;
     }
 
     public String getTotalCurrencyFormat() {
-        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        Locale usa = new Locale("en", "US");
+        NumberFormat currency = NumberFormat.getCurrencyInstance(usa);
         return currency.format(this.getTotal());
     }
 }
