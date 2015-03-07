@@ -121,7 +121,7 @@ public class UserDB {
                 user.setId(rs.getLong("UserID"));
                 user.setFirstName(rs.getString("FirstName"));
                 user.setLastName(rs.getString("LastName"));
-                user.setEmail(rs.getString("Email"));
+                user.setEmail(rs.getString("EmailAddress"));
                 user.setCompanyName(rs.getString("CompanyName"));
                 user.setAddress1(rs.getString("Address1"));
                 user.setAddress2(rs.getString("Address2"));
@@ -159,6 +159,7 @@ public class UserDB {
             return rs.next();
         } catch (SQLException e) {
             System.err.println(e);
+            System.out.println("I LOVE FUCKING CHIKEN");
             return false;
         } finally {
             DBUtil.closeResultSet(rs);
