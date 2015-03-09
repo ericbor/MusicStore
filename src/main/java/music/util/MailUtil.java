@@ -6,9 +6,7 @@ import javax.mail.internet.*;
 
 public class MailUtil {
 
-    public static void sendMail(String to, String from,
-            String subject, String body, boolean bodyIsHTML)
-            throws MessagingException {
+    public static void sendMail(String to, String from, String subject, String body, boolean bodyIsHTML) throws MessagingException {
         
         // 1 - get a mail session
         Properties props = new Properties();
