@@ -33,7 +33,7 @@ public class User implements Serializable {
         creditCardNumber = "";
         creditCardExpirationDate = "";
     }
-    
+
     public Long getId() {
         return userId;
     }

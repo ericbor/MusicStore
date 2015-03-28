@@ -8,7 +8,7 @@ public class MusicStoreContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
-        
+
         ServletContext sc = event.getServletContext();
 
         // get the absolute paths for switching regular and secure connections
@@ -17,7 +17,7 @@ public class MusicStoreContextListener implements ServletContextListener {
         String absolutePathSecure = "https://localhost:8443" + contextPath;
         sc.setAttribute("absolutePath", absolutePath);
         sc.setAttribute("absolutePathSecure", absolutePathSecure);
-        
+
         // initialize the customer service email address that's used throughout the web site
         String custServEmail = sc.getInitParameter("custServEmail");
         sc.setAttribute("custServEmail", custServEmail);
@@ -37,7 +37,7 @@ public class MusicStoreContextListener implements ServletContextListener {
         sc.setAttribute("creditCardYears", creditCardYears);
 
         //display random album on deploy
-        String[] albums = {"8601","jr01","pf01","pf02"};
+        String[] albums = {"8601", "jr01", "pf01", "pf02"};
         int idx = new Random().nextInt(albums.length);
         String random = (albums[idx]);
         //String path = "/musicStore/images/" + random + "_cover.jpg";

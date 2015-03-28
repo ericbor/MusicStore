@@ -10,7 +10,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 public class ReportDB {
 
     public static Workbook getUserEmail() {
-
         // create the workbook, its worksheet, and its title row
         Workbook workbook = new HSSFWorkbook();
         Sheet sheet = workbook.createSheet("User Email Report");
@@ -57,6 +56,7 @@ public class ReportDB {
                 row.createCell(10).setCellValue(rs.getInt("UserID"));
                 i++;
             }
+            System.out.println("VAGINA TRY");
             return workbook;
         } catch (SQLException e) {
             System.err.println(e);

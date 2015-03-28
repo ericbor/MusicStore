@@ -68,7 +68,7 @@ public class InvoiceDB {
             pool.freeConnection(connection);
         }
     }
-    
+
     public static ArrayList<Invoice> selectUnprocessedInvoices() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();

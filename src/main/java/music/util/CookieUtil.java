@@ -8,7 +8,7 @@ public class CookieUtil {
 
         String cookieValue = "";
         if (cookies != null) {
-            for (Cookie cookie: cookies) {
+            for (Cookie cookie : cookies) {
                 if (cookieName.equals(cookie.getName())) {
                     cookieValue = cookie.getValue();
                 }

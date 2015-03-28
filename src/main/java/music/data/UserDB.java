@@ -34,9 +34,9 @@ public class UserDB {
             ps.setString(11, user.getCreditCardType());
             ps.setString(12, user.getCreditCardNumber());
             ps.setString(13, user.getCreditCardExpirationDate());
-            
+
             ps.executeUpdate();
-            
+
             //Get the user ID from the last INSERT statement.
             String identityQuery = "SELECT @@IDENTITY AS IDENTITY";
             Statement identityStatement = connection.createStatement();
@@ -143,7 +143,7 @@ public class UserDB {
             pool.freeConnection(connection);
         }
     }
-    
+
     public static boolean emailExists(String email) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -165,5 +165,5 @@ public class UserDB {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
-    }    
+    }
 }

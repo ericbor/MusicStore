@@ -5,7 +5,7 @@ import java.text.*;
 import java.io.Serializable;
 
 public class Invoice implements Serializable {
-    
+
     private User user;
     private List<LineItem> lineItems;
     private Date invoiceDate;
