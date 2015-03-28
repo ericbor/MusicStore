@@ -3,7 +3,6 @@ package music.data;
 import java.sql.*;
 
 import music.business.*;
-import music.data.interfaces.DownloadDAO;
 
 public class DownloadDB {
 
