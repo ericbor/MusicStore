@@ -24,8 +24,6 @@ public class CatalogController extends HttpServlet {
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
-
-
     }
 
     @Override

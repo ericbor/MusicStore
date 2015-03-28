@@ -20,9 +20,7 @@ import music.business.*;
 public class AdminController extends HttpServlet {
 
     @Override
-    public void doPost(HttpServletRequest request,
-                       HttpServletResponse response)
-            throws IOException, ServletException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         String requestURI = request.getRequestURI();
         String url = "/admin";
@@ -40,9 +38,7 @@ public class AdminController extends HttpServlet {
     }
 
     @Override
-    public void doGet(HttpServletRequest request,
-                      HttpServletResponse response)
-            throws IOException, ServletException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         String requestURI = request.getRequestURI();
         String url = "/admin";
@@ -57,11 +53,9 @@ public class AdminController extends HttpServlet {
                 .forward(request, response);
     }
 
-    private String displayInvoices(HttpServletRequest request,
-                                   HttpServletResponse response) throws IOException {
+    private String displayInvoices(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        List<Invoice> unprocessedInvoices
-                = InvoiceDB.selectUnprocessedInvoices();
+        List<Invoice> unprocessedInvoices = InvoiceDB.selectUnprocessedInvoices();
 
         String url;
         if (unprocessedInvoices != null) {
@@ -76,8 +70,7 @@ public class AdminController extends HttpServlet {
         return url;
     }
 
-    private String displayInvoice(HttpServletRequest request,
-                                  HttpServletResponse response) {
+    private String displayInvoice(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
 
@@ -99,8 +92,7 @@ public class AdminController extends HttpServlet {
         return "/admin/invoice.jsp";
     }
 
-    private String processInvoice(HttpServletRequest request,
-                                  HttpServletResponse response) throws IOException {
+    private String processInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
         Invoice invoice = (Invoice) session.getAttribute("invoice");
@@ -130,8 +122,6 @@ public class AdminController extends HttpServlet {
             OutputStream out = response.getOutputStream();
             workbook.write(out);
             out.close();
-        } finally {
-
-        }
+        } finally {}
     }
 }

@@ -40,8 +40,6 @@ public class Invoice implements Serializable {
     }
 
     public String getInvoiceDateDefaultFormat() {
-        //DateFormat dateFormat = DateFormat.getDateInstance();
-        //String invoiceDateFormatted = dateFormat.format(invoiceDate);
         return new SimpleDateFormat("dd/MM/yy").format(invoiceDate);
 
     }

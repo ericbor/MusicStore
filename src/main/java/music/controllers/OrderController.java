@@ -197,8 +197,7 @@ public class OrderController extends HttpServlet {
         return "/order/displayInvoice";
     }
 
-    private String displayInvoice(HttpServletRequest request,
-                                  HttpServletResponse response) {
+    private String displayInvoice(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -216,20 +215,15 @@ public class OrderController extends HttpServlet {
         return "/cart/invoice.jsp";
     }
 
-    private String completeOrder(HttpServletRequest request,
-                                 HttpServletResponse response) {
+    private String completeOrder(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
         Invoice invoice = (Invoice) session.getAttribute("invoice");
 
-        String creditCardType =
-                request.getParameter("creditCardType");
-        String creditCardNumber =
-                request.getParameter("creditCardNumber");
-        String creditCardExpMonth =
-                request.getParameter("creditCardExpirationMonth");
-        String creditCardExpYear =
-                request.getParameter("creditCardExpirationYear");
+        String creditCardType = request.getParameter("creditCardType");
+        String creditCardNumber = request.getParameter("creditCardNumber");
+        String creditCardExpMonth = request.getParameter("creditCardExpirationMonth");
+        String creditCardExpYear = request.getParameter("creditCardExpirationYear");
 
         User user = invoice.getUser();
         user.setCreditCardType(creditCardType);
@@ -249,8 +243,7 @@ public class OrderController extends HttpServlet {
         InvoiceDB.insert(invoice);
 
         // set the emailCookie in the user's browser.
-        Cookie emailCookie = new Cookie("emailCookie",
-                user.getEmail());
+        Cookie emailCookie = new Cookie("emailCookie", user.getEmail());
         emailCookie.setMaxAge(60 * 24 * 365 * 2 * 60);
         emailCookie.setPath("/");
         response.addCookie(emailCookie);
