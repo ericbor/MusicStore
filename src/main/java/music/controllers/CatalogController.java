@@ -9,11 +9,10 @@ import music.data.*;
 import music.util.CookieUtil;
 
 public class CatalogController extends HttpServlet {
+
     
     @Override
-    public void doGet(HttpServletRequest request, 
-            HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         String requestURI = request.getRequestURI();
         String url;
@@ -25,12 +24,12 @@ public class CatalogController extends HttpServlet {
         getServletContext()
             .getRequestDispatcher(url)
             .forward(request, response);
+
+
     }
 
     @Override
-    public void doPost(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String requestURI = request.getRequestURI();
         String url = "/catalog";
@@ -42,9 +41,9 @@ public class CatalogController extends HttpServlet {
             .forward(request, response);
     }
     
-    private String showProduct(HttpServletRequest request, 
-            HttpServletResponse response) {
+    private String showProduct(HttpServletRequest request, HttpServletResponse response) {
         String productCode = request.getPathInfo();
+        System.out.println(request.getPathInfo());
         // This should never be null. But just to be safe.
         if (productCode != null) {
             productCode = productCode.substring(1);
@@ -88,8 +87,7 @@ public class CatalogController extends HttpServlet {
         return "/catalog/" + product.getCode() + "/sound.jsp";
     }  
     
-    private String registerUser(HttpServletRequest request,
-            HttpServletResponse response) {
+    private String registerUser(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
         String firstName = request.getParameter("firstName");

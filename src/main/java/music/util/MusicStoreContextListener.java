@@ -10,7 +10,7 @@ public class MusicStoreContextListener implements ServletContextListener {
         
         ServletContext sc = event.getServletContext();
 
-        // get the absolute paths for swithing regular and secure connections
+        // get the absolute paths for switching regular and secure connections
         String contextPath = sc.getContextPath();
         String absolutePath = "http://localhost:8080" + contextPath;
         String absolutePathSecure = "https://localhost:8443" + contextPath;
@@ -34,6 +34,20 @@ public class MusicStoreContextListener implements ServletContextListener {
             creditCardYears.add(yearString);
         }
         sc.setAttribute("creditCardYears", creditCardYears);
+
+//        HashMap<Integer, String> hm = new HashMap<Integer, String>();
+//        hm.put(1, "8601");
+//        hm.put(2, "jr01");
+//        hm.put(3, "pf01");
+//        hm.put(4, "pf02");
+//
+//        Random random = new Random();
+//        int  n = random.nextInt(4) + 1;
+//        String randomAlbum = hm.get(n);
+//
+//        String path = "/musicStore/images/" + randomAlbum + "_cover.jpg";
+//        sc.setAttribute("path", path);
+
     }
 
     @Override
