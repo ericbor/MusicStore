@@ -5,6 +5,7 @@ import java.util.*;
 
 public class MusicStoreContextListener implements ServletContextListener {
 
+
     @Override
     public void contextInitialized(ServletContextEvent event) {
         
@@ -35,19 +36,12 @@ public class MusicStoreContextListener implements ServletContextListener {
         }
         sc.setAttribute("creditCardYears", creditCardYears);
 
-//        HashMap<Integer, String> hm = new HashMap<Integer, String>();
-//        hm.put(1, "8601");
-//        hm.put(2, "jr01");
-//        hm.put(3, "pf01");
-//        hm.put(4, "pf02");
-//
-//        Random random = new Random();
-//        int  n = random.nextInt(4) + 1;
-//        String randomAlbum = hm.get(n);
-//
-//        String path = "/musicStore/images/" + randomAlbum + "_cover.jpg";
-//        sc.setAttribute("path", path);
-
+        //display random album on deploy
+        String[] albums = {"8601","jr01","pf01","pf02"};
+        int idx = new Random().nextInt(albums.length);
+        String random = (albums[idx]);
+        //String path = "/musicStore/images/" + random + "_cover.jpg";
+        sc.setAttribute("random", random);
     }
 
     @Override

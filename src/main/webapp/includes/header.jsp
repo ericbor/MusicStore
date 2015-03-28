@@ -11,7 +11,6 @@
 <head>
     <meta charset="utf-8">
     <title>SomeMusicStore</title>
-    <link rel="shortcut icon" href="<c:url value='/images/favicon.ico'/>">
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 </head>
 
