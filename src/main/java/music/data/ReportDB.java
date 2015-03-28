@@ -56,7 +56,6 @@ public class ReportDB {
                 row.createCell(10).setCellValue(rs.getInt("UserID"));
                 i++;
             }
-            System.out.println("VAGINA TRY");
             return workbook;
         } catch (SQLException e) {
             System.err.println(e);
@@ -68,8 +67,7 @@ public class ReportDB {
         }
     }
 
-    public static Workbook getDownloadDetail(
-            String startDate, String endDate) {
+    public static Workbook getDownloadDetail(String startDate, String endDate) {
 
         // create the workbook, its worksheet, and its title row
         Workbook workbook = new HSSFWorkbook();

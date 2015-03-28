@@ -5,7 +5,7 @@ import javax.sql.DataSource;
 import javax.naming.*;
 
 public class ConnectionPool {
-    //ConnectionPool - Singletone: 1) field is private and static; 2) getInstance() method; 3)Private constructor
+
     private static ConnectionPool pool = null;
     private static DataSource dataSource = null;
 
