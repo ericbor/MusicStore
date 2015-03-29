@@ -70,25 +70,25 @@
         <role-name>programmer</role-name>
     </security-role>
 
-     <security-constraint>
-    <!--   Restrict access to the URLs in the admin directory -->
+    <!--  <security-constraint>
+      Restrict access to the URLs in the admin directory
        <web-resource-collection>
             <web-resource-name>Admin</web-resource-name>
             <url-pattern>/admin/*</url-pattern>
-        </web-resource-collection>
+        </web-resource-collection>-->
 
-        <!-- Authorize the service and programmer roles -->
+        <!-- Authorize the service and programmer roles
        <auth-constraint>
             <role-name>service</role-name>
             <role-name>programmer</role-name>
-        </auth-constraint>
-        <!-- Forces a secure connection - remove comments to enable -->
+        </auth-constraint>-->
 
+        <!-- Forces a secure connection - remove comments to enable
       <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
 
-    </security-constraint>
+    </security-constraint>-->
 
 
         <!-- Use form-based authentication to provide access -->
