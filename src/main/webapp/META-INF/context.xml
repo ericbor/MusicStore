@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/musicStore">
+<Context docBase="C:\Users\HP\IdeaProjects\MusicStore\target\MusicStore-1.0-SNAPSHOT" path="/MusicStore">
   <!-- the music database that contains the Music Store data -->
   <Resource name="jdbc/musicDB" type="javax.sql.DataSource" auth="Container" 
             driverClassName="com.mysql.jdbc.Driver" 

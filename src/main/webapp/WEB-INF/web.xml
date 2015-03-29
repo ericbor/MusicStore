@@ -4,9 +4,8 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
                         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
-    <display-name>Murach's Servlets and JSP: Music Store site</display-name>
-    <description>The Music Store web site that's described in 
-        Murach's Java Servlets and JSP (3rd Edition)</description>
+    <display-name>Some Music Store</display-name>
+    <description>pet project</description>
 
     <!-- define a context initialization parameter -->
     <context-param>
@@ -71,25 +70,25 @@
         <role-name>programmer</role-name>
     </security-role>
 
-     <!-- <security-constraint>
-           Restrict access to the URLs in the admin directory -->
-       <!--<web-resource-collection>
+     <security-constraint>
+    <!--   Restrict access to the URLs in the admin directory -->
+       <web-resource-collection>
             <web-resource-name>Admin</web-resource-name>
             <url-pattern>/admin/*</url-pattern>
-        </web-resource-collection> -->
+        </web-resource-collection>
 
         <!-- Authorize the service and programmer roles -->
-       <!--<auth-constraint>
+       <auth-constraint>
             <role-name>service</role-name>
             <role-name>programmer</role-name>
-        </auth-constraint>-->
+        </auth-constraint>
         <!-- Forces a secure connection - remove comments to enable -->
 
-       <!-- <user-data-constraint>
+      <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
 
-    </security-constraint> -->
+    </security-constraint>
 
 
         <!-- Use form-based authentication to provide access -->

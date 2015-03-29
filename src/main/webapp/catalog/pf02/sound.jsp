@@ -10,7 +10,7 @@
         <div class="col-md-5">
           <div class="list-group">
             <a href="#" class="list-group-item active">To listen to a track, click on the song's link.</a>
-            <a href="/musicStore/sound/pf02/neon.mp3" class="list-group-item disabled">Neon Lights</a>
+            <a href="/musicStore/sound/pf02/neon.mp3" class="list-group-item disabled">1. Neon Lights</a>
             <a href="#" class="list-group-item">2. Just About Midnight</a>
             <a href="/musicStore/sound/pf02/tank.mp3" class="list-group-item disabled">3. Tank Hill</a>
             <a href="#" class="list-group-item">4. Let the Possums Play Possum</a>
