@@ -1,17 +1,21 @@
 package music.controllers;
 
 import music.business.*;
-import music.data.CustomerDB;
-import music.data.InvoiceDB;
-import music.data.ProductDB;
+import music.dao.ProductDao;
+import music.dao.impl.CustomerDaoImpl;
+import music.dao.impl.InvoiceDB;
 import music.util.CookieUtil;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
 
+@Controller
 public class OrderController extends HttpServlet {
     private static final String defaultURL = "/cart/cart.jsp";
+
+    ProductDao productDao;
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -72,7 +76,7 @@ public class OrderController extends HttpServlet {
         if (cart == null)
             cart = new Cart();
         String productCode = request.getParameter("productCode");
-        Product product = ProductDB.selectProduct(productCode);
+        Product product = productDao.selectProduct(productCode);
         if (product != null) {
             LineItem lineItem = new LineItem();
             lineItem.setProduct(product);
@@ -95,7 +99,7 @@ public class OrderController extends HttpServlet {
         } catch (NumberFormatException ex) {
             quantity = 1;
         }
-        Product product = ProductDB.selectProduct(productCode);
+        Product product = productDao.selectProduct(productCode);
         if (product != null && cart != null) {
             LineItem lineItem = new LineItem();
             lineItem.setProduct(product);
@@ -112,7 +116,7 @@ public class OrderController extends HttpServlet {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         String productCode = request.getParameter("productCode");
-        Product product = ProductDB.selectProduct(productCode);
+        Product product = productDao.selectProduct(productCode);
         if (product != null && cart != null) {
             LineItem lineItem = new LineItem();
             lineItem.setProduct(product);
@@ -138,7 +142,7 @@ public class OrderController extends HttpServlet {
                 user = new Customer();
                 url = "/cart/user.jsp";
             } else {
-                user = CustomerDB.selectCustomer(email);
+                user = CustomerDaoImpl.selectCustomer(email);
                 if (user != null && !user.getAddress1().equals("")) {
                     url = "/order/displayInvoice";
                 }
@@ -167,8 +171,8 @@ public class OrderController extends HttpServlet {
             user = new Customer();
         }
 
-        if (CustomerDB.emailExists(email)) {
-            user = CustomerDB.selectCustomer(email);
+        if (CustomerDaoImpl.emailExists(email)) {
+            user = CustomerDaoImpl.selectCustomer(email);
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
@@ -179,7 +183,7 @@ public class OrderController extends HttpServlet {
             user.setState(state);
             user.setZip(zip);
             user.setCountry(country);
-            CustomerDB.update(user);
+            CustomerDaoImpl.update(user);
         } else {
             user.setFirstName(firstName);
             user.setLastName(lastName);
@@ -191,7 +195,7 @@ public class OrderController extends HttpServlet {
             user.setState(state);
             user.setZip(zip);
             user.setCountry(country);
-            CustomerDB.insert(user);
+            CustomerDaoImpl.insert(user);
         }
 
         session.setAttribute("user", user);
@@ -234,10 +238,10 @@ public class OrderController extends HttpServlet {
                 + "/" + creditCardExpYear);
 
         // if a record for the User object exists, update it
-        if (CustomerDB.emailExists(user.getEmail())) {
-            CustomerDB.update(user);
+        if (CustomerDaoImpl.emailExists(user.getEmail())) {
+            CustomerDaoImpl.update(user);
         } else { // otherwise, write a new record for the user            
-            CustomerDB.insert(user);
+            CustomerDaoImpl.insert(user);
         }
         invoice.setUser(user);
 

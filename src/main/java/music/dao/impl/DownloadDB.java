@@ -1,8 +1,10 @@
-package music.data;
+package music.dao.impl;
 
 import java.sql.*;
 
 import music.business.*;
+import music.dao.ConnectionPool;
+import music.dao.DBUtil;
 
 public class DownloadDB {
 

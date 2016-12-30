@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="productDao" class="music.dao.impl.ProductDaoImpl" />
+
+    <bean name="catalogController" class="music.controllers.CatalogController">
+        <property name="productDao" ref="productDao" />
+    </bean>
+
+    <bean name="adminController" class="music.controllers.AdminController" />
+    <bean name="orderController" class="music.controllers.OrderController" />
+    <bean name="userController" class="music.controllers.UserController" />
+
+    <context:component-scan base-package="music.controllers" />
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+
+
+</beans>

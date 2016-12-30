@@ -1,11 +1,16 @@
-package music.data;
+package music.dao.impl;
 
-import java.sql.*;
-
+import music.dao.ConnectionPool;
+import music.dao.DBUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ReportDB {
 
@@ -30,7 +35,7 @@ public class ReportDB {
         row.createCell(9).setCellValue("Country");
         row.createCell(10).setCellValue("UserID");
 
-        // create the data rows
+        // create the dao rows
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         Statement statement = null;
@@ -87,7 +92,7 @@ public class ReportDB {
         row.createCell(3).setCellValue("FirstName");
         row.createCell(4).setCellValue("LastName");
 
-        // create the data rows
+        // create the dao rows
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         Statement statement = null;

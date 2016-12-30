@@ -1,4 +1,4 @@
-package music.data;
+package music.dao;
 
 import java.sql.*;
 

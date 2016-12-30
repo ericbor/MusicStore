@@ -1,29 +1,39 @@
-package music.data;
+package music.dao.impl;
 
-import java.sql.*;
-import java.util.*;
+import music.business.Product;
+import music.dao.ConnectionPool;
+import music.dao.DBUtil;
+import music.dao.ProductDao;
 
-import music.business.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ProductDB {
+public class ProductDaoImpl implements ProductDao {
+
+    private final String SELECT_BY_CODE = "SELECT * FROM Product WHERE ProductCode = ?";
+    private final String SELECT_BY_ID = "SELECT * FROM Product WHERE ProductID = ?";
+    private final String SELECT_ALL = "SELECT * FROM Product";
 
     //This method returns null if a product isn't found.
-    public static Product selectProduct(String productCode) {
+    public Product selectProduct(String productCode) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT * FROM Product "
-                + "WHERE ProductCode = ?";
         try {
-            ps = connection.prepareStatement(query);
+            ps = connection.prepareStatement(SELECT_BY_CODE);
             ps.setString(1, productCode);
             rs = ps.executeQuery();
             if (rs.next()) {
                 Product p = new Product();
                 p.setId(rs.getLong("ProductID"));
                 p.setCode(rs.getString("ProductCode"));
+                p.setTitle(rs.getString("ProductTitle"));
                 p.setDescription(rs.getString("ProductDescription"));
                 p.setPrice(rs.getDouble("ProductPrice"));
                 return p;
@@ -41,22 +51,21 @@ public class ProductDB {
     }
 
     //This method returns null if a product isn't found.
-    public static Product selectProduct(long productID) {
+    public Product selectProduct(long productID) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT * FROM Product "
-                + "WHERE ProductID = ?";
         try {
-            ps = connection.prepareStatement(query);
+            ps = connection.prepareStatement(SELECT_BY_ID);
             ps.setLong(1, productID);
             rs = ps.executeQuery();
             if (rs.next()) {
                 Product p = new Product();
                 p.setId(rs.getLong("ProductID"));
                 p.setCode(rs.getString("ProductCode"));
+                p.setTitle(rs.getString("ProductTitle"));
                 p.setDescription(rs.getString("ProductDescription"));
                 p.setPrice(rs.getDouble("ProductPrice"));
                 return p;
@@ -74,20 +83,20 @@ public class ProductDB {
     }
 
     //This method returns null if a product isn't found.
-    public static List<Product> selectProducts() {
+    public List<Product> selectProducts() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT * FROM Product";
         try {
-            ps = connection.prepareStatement(query);
+            ps = connection.prepareStatement(SELECT_ALL);
             rs = ps.executeQuery();
             ArrayList<Product> products = new ArrayList<Product>();
             while (rs.next()) {
                 Product p = new Product();
                 p.setCode(rs.getString("ProductCode"));
+                p.setTitle(rs.getString("ProductTitle"));
                 p.setDescription(rs.getString("ProductDescription"));
                 p.setPrice(rs.getDouble("ProductPrice"));
                 products.add(p);

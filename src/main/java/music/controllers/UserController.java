@@ -1,12 +1,17 @@
 package music.controllers;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.*;
-
 import music.business.Customer;
-import music.data.CustomerDB;
+import music.dao.impl.CustomerDaoImpl;
+import org.springframework.stereotype.Controller;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@Controller
 public class UserController extends HttpServlet {
 
     @Override
@@ -61,13 +66,13 @@ public class UserController extends HttpServlet {
         String url;
         String message;
         //check that email address doesn't already exist
-        if (CustomerDB.emailExists(email)) {
+        if (CustomerDaoImpl.emailExists(email)) {
             message = "This email address already exists. <br>"
                     + "Please enter another email address.";
             request.setAttribute("message", message);
             url = "/email/index.jsp";
         } else {
-            CustomerDB.insert(user);
+            CustomerDaoImpl.insert(user);
             message = "";
             request.setAttribute("message", message);
             url = "/email/thanks.jsp";

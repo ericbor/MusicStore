@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
-                        http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app
+        version="3.0"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
     <display-name>Some Music Store</display-name>
     <description>pet project</description>
@@ -19,10 +20,6 @@
         <servlet-class>music.controllers.AdminController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CatalogController</servlet-name>
-        <servlet-class>music.controllers.CatalogController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>OrderController</servlet-name>
         <servlet-class>music.controllers.OrderController</servlet-class>
     </servlet>
@@ -35,10 +32,6 @@
     <servlet-mapping>
         <servlet-name>AdminController</servlet-name>
         <url-pattern>/adminController/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CatalogController</servlet-name>
-        <url-pattern>/catalog/product/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>OrderController</servlet-name>
@@ -70,27 +63,6 @@
         <role-name>programmer</role-name>
     </security-role>
 
-    <!--  <security-constraint>
-      Restrict access to the URLs in the admin directory
-       <web-resource-collection>
-            <web-resource-name>Admin</web-resource-name>
-            <url-pattern>/admin/*</url-pattern>
-        </web-resource-collection>-->
-
-        <!-- Authorize the service and programmer roles
-       <auth-constraint>
-            <role-name>service</role-name>
-            <role-name>programmer</role-name>
-        </auth-constraint>-->
-
-        <!-- Forces a secure connection - remove comments to enable
-      <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-
-    </security-constraint>-->
-
-
         <!-- Use form-based authentication to provide access -->
     <login-config>
         <auth-method>FORM</auth-method>
@@ -102,7 +74,34 @@
     
     <!-- Use cookies (not URL encoding) for session tracking -->
     <session-config>
+        <session-timeout>30</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
+
+    <!-- Spring -->
+    <servlet>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
+    <!-- Spring -->
+
 
 </web-app>

@@ -1,11 +1,21 @@
-package music.data;
+package music.dao.impl;
 
-import java.sql.*;
-import java.util.*;
+import music.business.LineItem;
+import music.business.Product;
+import music.dao.ConnectionPool;
+import music.dao.DBUtil;
+import music.dao.ProductDao;
 
-import music.business.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LineItemDB {
+
+    ProductDao productDao;
 
     //This method adds one lineItem to the LineItems table.
     public static long insert(long invoiceID, LineItem lineItem) {
@@ -49,7 +59,7 @@ public class LineItemDB {
             while (rs.next()) {
                 LineItem lineItem = new LineItem();
                 int productID = rs.getInt("ProductID");
-                Product product = ProductDB.selectProduct(productID);
+                Product product = null;//ProductDaoImpl.selectProduct(productID);
                 lineItem.setProduct(product);
                 lineItem.setQuantity(rs.getInt("Quantity"));
                 lineItems.add(lineItem);

@@ -1,22 +1,22 @@
 package music.controllers;
 
-import music.data.ReportDB;
-import music.data.InvoiceDB;
+import music.business.Invoice;
+import music.dao.impl.InvoiceDB;
+import music.dao.impl.ReportDB;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.stereotype.Controller;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.List;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Workbook;
-
-import music.business.*;
-
+@Controller
 public class AdminController extends HttpServlet {
 
     @Override

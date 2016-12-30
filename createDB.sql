@@ -87,17 +87,51 @@ CREATE TABLE LineItem(
 CREATE TABLE Product(
     ProductID INT NOT NULL AUTO_INCREMENT,
     ProductCode VARCHAR(10) NOT NULL DEFAULT '',
-    ProductDescription VARCHAR(100) NOT NULL DEFAULT '',
+    ProductTitle VARCHAR(100) NOT NULL DEFAULT '',
+    ProductDescription VARCHAR(1000) NOT NULL DEFAULT '',
     ProductPrice DECIMAL(7,2) NOT NULL DEFAULT '0.00',
   
     PRIMARY KEY (ProductID)
 );
   
 INSERT INTO Product VALUES 
-  ('1', '8601', '86 (the band) - True Life Songs and Pictures', '14.95'),
-  ('2', 'pf01', 'Paddlefoot - The first CD', '12.95'),
-  ('3', 'pf02', 'Paddlefoot - The second CD', '14.95'),
-  ('4', 'jr01', 'Joe Rut - Genuine Wood Grained Finish', '14.95');
+  ('1', '8601', '86 (the band) - True Life Songs and Pictures',
+  'The debut album from 86 (the band), True Life Songs and Pictures rocks and twangs in equal measure. Filled with banjo, one-string bass, fiddle, and 3-part harmonies, this semi-rock, semi-country, semi-bluegrass album covers a lot of ground.',
+  '14.95'),
+  ('2', 'pf01', 'Paddlefoot - The first CD',
+  'This 68-minute opus from San Francisco''s Paddlefoot doesn''t pull any punches.  The result is somewhere between The Pogues, Camper Van Beethoven, and Uncle Tupelo.',
+  '12.95'),
+  ('3', 'pf02', 'Paddlefoot - The second CD',
+  'The second CD from San Francisco''s Paddlefoot finds the band maturing as it roams through much of the same musical terrain as the previous CD. While this album occasionally rocks, it also has its introspective and bittersweet moments.',
+  '14.95'),
+  ('4', 'jr01', 'Joe Rut - Genuine Wood Grained Finish',
+  'The debut album from Joe Rut rambles from Byrds-esque folk pop of "Filter" to the country sounds of "Find My Way Marie" to psychedelic Brit-pop tunes like "A Place In All This." This well-crafted album is unique and cohesive, revealing its many layers on repeated listens.',
+  '14.95');
+
+CREATE TABLE Song(
+  SongID INT NOT NULL AUTO_INCREMENT,
+  ProductID INT NOT NULL,
+  SongTitle VARCHAR(100) NOT NULL DEFAULT '',
+
+  PRIMARY KEY (SongID),
+  FOREIGN KEY (ProductID) REFERENCES Product (ProductID)
+);
+
+INSERT INTO Song VALUES
+  ('1', '1', 'Filter'),
+  ('2', '1', 'Find My Way Marie'),
+  ('3', '1', 'Hole'),
+  ('4', '1', '1400 Years'),
+  ('5', '1', 'So Long Lazy Ray'),
+  ('6', '1', 'A Tuna Is a Damn Big Fish'),
+  ('7', '1', 'El Dorado'),
+  ('8', '1', 'Dream of You'),
+  ('9', '1', 'This Sea Is Full of Monsters'),
+  ('10', '1', 'A Place in All This'),
+  ('11', '1', 'GTTSWMD'),
+  ('12', '1', 'AM Land'),
+  ('13', '1', 'Whole Month of Sundays'),
+  ('14', '1', 'Penny From a Poor Man');
   
 CREATE TABLE Download (
     DownloadID INT NOT NULL AUTO_INCREMENT,

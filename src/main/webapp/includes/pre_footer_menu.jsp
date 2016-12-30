@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-md-2">
     <a href="<c:url value='/catalog/product/${random}' />">
-    <img src="/musicStore/images/${random}_cover.jpg" width="175" height="175" alt="Album Image">
+    <img src="/images/${random}_cover.jpg" width="175" height="175" alt="Album Image">
       </a>
   </div>
   <div class="col-md-7">
@@ -18,7 +18,7 @@
   <div class="col-md-3">
     <ul class="nav nav-pills nav-stacked">
       <li class="active"> <a href="<c:url value='/' />">Home</a></li>
-      <li><a href="<c:url value='/catalog' />">Browse Catalog</a></li>
+      <li><a href="<c:url value='/catalog/index.jsp' />">Browse Catalog</a></li>
       <li><a href="<c:url value='/email' />">Join Email List</a></li>
       <li><a href="<c:url value='/customer_service' />">Customer Service</a></li>
     </ul>

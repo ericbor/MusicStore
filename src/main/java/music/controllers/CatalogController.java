@@ -3,59 +3,46 @@ package music.controllers;
 import music.business.Customer;
 import music.business.Download;
 import music.business.Product;
-import music.data.CustomerDB;
-import music.data.DownloadDB;
-import music.data.ProductDB;
+import music.dao.ProductDao;
+import music.dao.impl.CustomerDaoImpl;
+import music.dao.impl.DownloadDB;
 import music.util.CookieUtil;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.*;
-import java.io.IOException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-public class CatalogController extends HttpServlet {
+@Controller
+@RequestMapping("/catalog/product")
+public class CatalogController {
+    ProductDao productDao;
 
-
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String requestURI = request.getRequestURI();
-        String url;
-        if (requestURI.endsWith("/listen")) {
-            url = listen(request, response);
-        } else {
-            url = showProduct(request, response);
-        }
-        getServletContext()
-                .getRequestDispatcher(url)
-                .forward(request, response);
+    public ProductDao getProductDao() {
+        return productDao;
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String requestURI = request.getRequestURI();
-        String url = "/catalog";
-        if (requestURI.endsWith("/register")) {
-            url = registerUser(request, response);
-        }
-        getServletContext()
-                .getRequestDispatcher(url)
-                .forward(request, response);
+    public void setProductDao(ProductDao productDao) {
+        this.productDao = productDao;
     }
 
-    private String showProduct(HttpServletRequest request, HttpServletResponse response) {
-        String productCode = request.getPathInfo();
-        System.out.println(request.getPathInfo());
-        // This should never be null. But just to be safe.
+    @RequestMapping(value = "/{productCode}", method= RequestMethod.GET)
+    private String showProduct(@PathVariable String productCode, Model model) {
+
         if (productCode != null) {
-            productCode = productCode.substring(1);
-            Product product = ProductDB.selectProduct(productCode);
-            HttpSession session = request.getSession();
-            session.setAttribute("product", product);
+            Product product = productDao.selectProduct(productCode);
+            model.addAttribute("product", product);
         }
-        return "/catalog/" + productCode + "/index.jsp";
+
+        return "/catalog/product.jsp";
     }
 
+    @RequestMapping(value = "/{productCode}/listen", method= RequestMethod.GET)
     private String listen(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
@@ -69,7 +56,7 @@ public class CatalogController extends HttpServlet {
             if (emailAddress == null || emailAddress.equals("")) {
                 return "/catalog/register.jsp";
             } else {
-                user = CustomerDB.selectCustomer(emailAddress);
+                user = CustomerDaoImpl.selectCustomer(emailAddress);
                 // if a user for that email isn't in the database, 
                 // go to the registration page
                 if (user == null) {
@@ -89,6 +76,7 @@ public class CatalogController extends HttpServlet {
         return "/catalog/" + product.getCode() + "/sound.jsp";
     }
 
+    @RequestMapping(value = "/register", method= RequestMethod.POST)
     private String registerUser(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
@@ -97,18 +85,18 @@ public class CatalogController extends HttpServlet {
         String email = request.getParameter("email");
 
         Customer user;
-        if (CustomerDB.emailExists(email)) {
-            user = CustomerDB.selectCustomer(email);
+        if (CustomerDaoImpl.emailExists(email)) {
+            user = CustomerDaoImpl.selectCustomer(email);
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
-            CustomerDB.update(user);
+            CustomerDaoImpl.update(user);
         } else {
             user = new Customer();
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
-            CustomerDB.insert(user);
+            CustomerDaoImpl.insert(user);
         }
 
         session.setAttribute("user", user);

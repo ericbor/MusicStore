@@ -1,10 +1,19 @@
-package music.data;
+package music.dao.impl;
 
 import music.business.Customer;
+import music.dao.ConnectionPool;
+import music.dao.DBUtil;
 
 import java.sql.*;
 
-public class CustomerDB {
+public class CustomerDaoImpl { //implements CustomerDao {
+
+//    private final String INSERT = "INSERT INTO Customer (FirstName, LastName, Email, CompanyName, "
+//            + "Address1, Address2, City, State, Zip, Country, "
+//            + "CreditCardType, CreditCardNumber, CreditCardExpirationDate) "
+//            + "VALUES (?, ?, ?, ?, "
+//            + "?, ?, ?, ?, ?, ?, "
+//            + "?, ?, ?)";
 
     public static void insert(Customer customer) {
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -12,15 +21,15 @@ public class CustomerDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query
-                = "INSERT INTO Customer (FirstName, LastName, Email, CompanyName, "
+        String INSERT = "INSERT INTO Customer (FirstName, LastName, Email, CompanyName, "
                 + "Address1, Address2, City, State, Zip, Country, "
                 + "CreditCardType, CreditCardNumber, CreditCardExpirationDate) "
                 + "VALUES (?, ?, ?, ?, "
                 + "?, ?, ?, ?, ?, ?, "
                 + "?, ?, ?)";
+
         try {
-            ps = connection.prepareStatement(query);
+            ps = connection.prepareStatement(INSERT);
             ps.setString(1, customer.getFirstName());
             ps.setString(2, customer.getLastName());
             ps.setString(3, customer.getEmail());

@@ -5,8 +5,6 @@ import java.util.*;
 
 public class MusicStoreContextListener implements ServletContextListener {
 
-
-    @Override
     public void contextInitialized(ServletContextEvent event) {
 
         ServletContext sc = event.getServletContext();
@@ -40,11 +38,10 @@ public class MusicStoreContextListener implements ServletContextListener {
         String[] albums = {"8601", "jr01", "pf01", "pf02"};
         int idx = new Random().nextInt(albums.length);
         String random = (albums[idx]);
-        //String path = "/musicStore/images/" + random + "_cover.jpg";
+        String path = "/images/" + random + "_cover.jpg";
         sc.setAttribute("random", random);
     }
 
-    @Override
     public void contextDestroyed(ServletContextEvent event) {
         // no cleanup necessary
     }

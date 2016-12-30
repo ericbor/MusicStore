@@ -1,8 +1,10 @@
-package music.data;
+package music.dao.impl;
 
 import music.business.Customer;
 import music.business.Invoice;
 import music.business.LineItem;
+import music.dao.ConnectionPool;
+import music.dao.DBUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -94,7 +96,7 @@ public class InvoiceDB {
             ArrayList<Invoice> unprocessedInvoices = new ArrayList<Invoice>();
             while (rs.next()) {
                 //Create a User object
-                Customer user = CustomerDB.selectCustomer(rs.getString("Email"));
+                Customer user = CustomerDaoImpl.selectCustomer(rs.getString("Email"));
 
                 //Get line items
                 long invoiceID = rs.getLong("Invoice.InvoiceID");

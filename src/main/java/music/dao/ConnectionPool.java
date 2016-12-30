@@ -1,4 +1,4 @@
-package music.data;
+package music.dao;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

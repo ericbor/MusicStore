@@ -1,16 +1,34 @@
 package music.business;
 
-import java.text.NumberFormat;
 import java.io.Serializable;
-import java.util.Currency;
+import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
 
 public class Product implements Serializable {
 
     private Long productId;
     private String code;
+    private String title;
     private String description;
     private double price;
+    private List<Song> songList;
+
+    public List<Song> getSongList() {
+        return songList;
+    }
+
+    public void setSongList(List<Song> songList) {
+        this.songList = songList;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public Product() {
     }
@@ -40,15 +58,11 @@ public class Product implements Serializable {
     }
 
     public String getArtistName() {
-        String artistName =
-                description.substring(0, description.indexOf(" - "));
-        return artistName;
+        return title.substring(0, title.indexOf(" - "));
     }
 
     public String getAlbumName() {
-        String albumName =
-                description.substring(description.indexOf(" - ") + 3);
-        return albumName;
+        return title.substring(title.indexOf(" - ") + 3);
     }
 
     public void setPrice(double price) {
@@ -66,11 +80,22 @@ public class Product implements Serializable {
     }
 
     public String getImageURL() {
-        String imageURL = "/musicStore/images/" + code + "_cover.jpg";
+        String imageURL = "/images/" + code + "_cover.jpg";
         return imageURL;
     }
 
     public String getProductType() {
         return "Audio CD";
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", code='" + code + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
