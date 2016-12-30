@@ -1,12 +1,14 @@
 package music.controllers;
 
-import java.io.IOException;
+import music.business.*;
+import music.data.CustomerDB;
+import music.data.InvoiceDB;
+import music.data.ProductDB;
+import music.util.CookieUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-
-import music.business.*;
-import music.data.*;
-import music.util.*;
+import java.io.IOException;
 
 public class OrderController extends HttpServlet {
     private static final String defaultURL = "/cart/cart.jsp";
@@ -122,7 +124,7 @@ public class OrderController extends HttpServlet {
     private String checkUser(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        Customer user = (Customer) session.getAttribute("user");
 
         // if the User object exists with address1, skip User page
         String url = "/cart/user.jsp";
@@ -133,10 +135,10 @@ public class OrderController extends HttpServlet {
             String email
                     = CookieUtil.getCookieValue(cookies, "emailCookie");
             if (email.equals("")) {
-                user = new User();
+                user = new Customer();
                 url = "/cart/user.jsp";
             } else {
-                user = UserDB.selectUser(email);
+                user = CustomerDB.selectCustomer(email);
                 if (user != null && !user.getAddress1().equals("")) {
                     url = "/order/displayInvoice";
                 }
@@ -160,13 +162,13 @@ public class OrderController extends HttpServlet {
         String country = request.getParameter("country");
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        Customer user = (Customer) session.getAttribute("user");
         if (user == null) {
-            user = new User();
+            user = new Customer();
         }
 
-        if (UserDB.emailExists(email)) {
-            user = UserDB.selectUser(email);
+        if (CustomerDB.emailExists(email)) {
+            user = CustomerDB.selectCustomer(email);
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
@@ -177,7 +179,7 @@ public class OrderController extends HttpServlet {
             user.setState(state);
             user.setZip(zip);
             user.setCountry(country);
-            UserDB.update(user);
+            CustomerDB.update(user);
         } else {
             user.setFirstName(firstName);
             user.setLastName(lastName);
@@ -189,7 +191,7 @@ public class OrderController extends HttpServlet {
             user.setState(state);
             user.setZip(zip);
             user.setCountry(country);
-            UserDB.insert(user);
+            CustomerDB.insert(user);
         }
 
         session.setAttribute("user", user);
@@ -200,7 +202,7 @@ public class OrderController extends HttpServlet {
     private String displayInvoice(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        Customer user = (Customer) session.getAttribute("user");
         Cart cart = (Cart) session.getAttribute("cart");
 
         java.util.Date today = new java.util.Date();
@@ -225,17 +227,17 @@ public class OrderController extends HttpServlet {
         String creditCardExpMonth = request.getParameter("creditCardExpirationMonth");
         String creditCardExpYear = request.getParameter("creditCardExpirationYear");
 
-        User user = invoice.getUser();
+        Customer user = invoice.getUser();
         user.setCreditCardType(creditCardType);
         user.setCreditCardNumber(creditCardNumber);
         user.setCreditCardExpirationDate(creditCardExpMonth
                 + "/" + creditCardExpYear);
 
         // if a record for the User object exists, update it
-        if (UserDB.emailExists(user.getEmail())) {
-            UserDB.update(user);
+        if (CustomerDB.emailExists(user.getEmail())) {
+            CustomerDB.update(user);
         } else { // otherwise, write a new record for the user            
-            UserDB.insert(user);
+            CustomerDB.insert(user);
         }
         invoice.setUser(user);
 

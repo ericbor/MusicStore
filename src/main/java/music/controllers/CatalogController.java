@@ -1,12 +1,16 @@
 package music.controllers;
 
-import java.io.IOException;
+import music.business.Customer;
+import music.business.Download;
+import music.business.Product;
+import music.data.CustomerDB;
+import music.data.DownloadDB;
+import music.data.ProductDB;
+import music.util.CookieUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-
-import music.business.*;
-import music.data.*;
-import music.util.CookieUtil;
+import java.io.IOException;
 
 public class CatalogController extends HttpServlet {
 
@@ -55,7 +59,7 @@ public class CatalogController extends HttpServlet {
     private String listen(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        Customer user = (Customer) session.getAttribute("user");
 
         // if the User object doesn't exist, check for the email cookie
         if (user == null) {
@@ -65,7 +69,7 @@ public class CatalogController extends HttpServlet {
             if (emailAddress == null || emailAddress.equals("")) {
                 return "/catalog/register.jsp";
             } else {
-                user = UserDB.selectUser(emailAddress);
+                user = CustomerDB.selectCustomer(emailAddress);
                 // if a user for that email isn't in the database, 
                 // go to the registration page
                 if (user == null) {
@@ -92,19 +96,19 @@ public class CatalogController extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
 
-        User user;
-        if (UserDB.emailExists(email)) {
-            user = UserDB.selectUser(email);
+        Customer user;
+        if (CustomerDB.emailExists(email)) {
+            user = CustomerDB.selectCustomer(email);
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
-            UserDB.update(user);
+            CustomerDB.update(user);
         } else {
-            user = new User();
+            user = new Customer();
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
-            UserDB.insert(user);
+            CustomerDB.insert(user);
         }
 
         session.setAttribute("user", user);

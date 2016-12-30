@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Download implements Serializable {
 
     private Long downloadId;
-    private User user;
+    private Customer user;
     private Date downloadDate;
     private String productCode;
 
@@ -24,11 +24,11 @@ public class Download implements Serializable {
         this.downloadId = downloadId;
     }
 
-    public void setUser(User user) {
+    public void setUser(Customer user) {
         this.user = user;
     }
 
-    public User getUser() {
+    public Customer getUser() {
         return user;
     }
 

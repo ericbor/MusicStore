@@ -4,8 +4,8 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
-import music.business.User;
-import music.data.UserDB;
+import music.business.Customer;
+import music.data.CustomerDB;
 
 public class UserController extends HttpServlet {
 
@@ -51,7 +51,7 @@ public class UserController extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
 
-        User user = new User();
+        Customer user = new Customer();
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
@@ -61,13 +61,13 @@ public class UserController extends HttpServlet {
         String url;
         String message;
         //check that email address doesn't already exist
-        if (UserDB.emailExists(email)) {
+        if (CustomerDB.emailExists(email)) {
             message = "This email address already exists. <br>"
                     + "Please enter another email address.";
             request.setAttribute("message", message);
             url = "/email/index.jsp";
         } else {
-            UserDB.insert(user);
+            CustomerDB.insert(user);
             message = "";
             request.setAttribute("message", message);
             url = "/email/thanks.jsp";

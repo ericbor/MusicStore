@@ -9,18 +9,20 @@
 
                 <div class="col-md-5">
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">To listen to a track, click on the song's link.</a>
-                    <a href="#" class="list-group-item">1. How to Get There</a>
-                    <a href="/musicStore/sound/8601/star.mp3" class="list-group-item disabled">2. You Are a Star</a>
-                    <a href="/musicStore/sound/8601/no_difference.mp3" class="list-group-item disabled">3. Don't Make No Difference</a>
-                    <a href="#" class="list-group-item">4. Unidentified Fiddling Object</a>
-                    <a href="#" class="list-group-item">5. Beat Up Old Car</a>
-                    <a href="#" class="list-group-item">6. Wildflowers</a>
-                    <a href="#" class="list-group-item">7. What You Whistle When You Walk Home</a>
-                    <a href="#" class="list-group-item">8. Three Sheets to the Wind</a>
-                    <a href="#" class="list-group-item">9. Singin' Drunk</a>
-                    <a href="#" class="list-group-item">10. Don't Close Your Eyes</a>
-                    <a href="#" class="list-group-item">11. Morning Sun</a>
+                    <a href="#" class="list-group-item disabled">To listen to a track, click on the song's link.</a>
+                    <a href="#" class="list-group-item disabled">1. How to Get There</a>
+
+                    <a href="/sound/8601/star.mp3" class="list-group-item">2. You Are a Star</a>
+                    <a href="/sound/8601/no_difference.mp3" class="list-group-item">3. Don't Make No Difference</a>
+
+                    <a href="#" class="list-group-item disabled">4. Unidentified Fiddling Object</a>
+                    <a href="#" class="list-group-item disabled">5. Beat Up Old Car</a>
+                    <a href="#" class="list-group-item disabled">6. Wildflowers</a>
+                    <a href="#" class="list-group-item disabled">7. What You Whistle When You Walk Home</a>
+                    <a href="#" class="list-group-item disabled">8. Three Sheets to the Wind</a>
+                    <a href="#" class="list-group-item disabled">9. Singin' Drunk</a>
+                    <a href="#" class="list-group-item disabled">10. Don't Close Your Eyes</a>
+                    <a href="#" class="list-group-item disabled">11. Morning Sun</a>
                 </div>
                 </div>
 

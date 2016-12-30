@@ -2,7 +2,7 @@ package music.business;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class Customer implements Serializable {
     private Long userId;
     private String firstName;
     private String lastName;
@@ -18,7 +18,7 @@ public class User implements Serializable {
     private String creditCardNumber;
     private String creditCardExpirationDate;
 
-    public User() {
+    public Customer() {
         firstName = "";
         lastName = "";
         email = "";

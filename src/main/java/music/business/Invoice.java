@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class Invoice implements Serializable {
 
-    private User user;
+    private Customer user;
     private List<LineItem> lineItems;
     private Date invoiceDate;
     private Long invoiceNumber;
@@ -15,11 +15,11 @@ public class Invoice implements Serializable {
     public Invoice() {
     }
 
-    public void setUser(User user) {
+    public void setUser(Customer user) {
         this.user = user;
     }
 
-    public User getUser() {
+    public Customer getUser() {
         return user;
     }
 

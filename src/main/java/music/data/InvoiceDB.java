@@ -1,9 +1,12 @@
 package music.data;
 
-import java.sql.*;
-import java.util.*;
+import music.business.Customer;
+import music.business.Invoice;
+import music.business.LineItem;
 
-import music.business.*;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InvoiceDB {
 
@@ -91,7 +94,7 @@ public class InvoiceDB {
             ArrayList<Invoice> unprocessedInvoices = new ArrayList<Invoice>();
             while (rs.next()) {
                 //Create a User object
-                User user = UserDB.selectUser(rs.getString("EmailAddress"));
+                Customer user = CustomerDB.selectCustomer(rs.getString("Email"));
 
                 //Get line items
                 long invoiceID = rs.getLong("Invoice.InvoiceID");

@@ -1,8 +1,10 @@
 package music.data;
 
-import java.sql.*;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.naming.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class ConnectionPool {
 
@@ -19,7 +21,7 @@ public class ConnectionPool {
     private ConnectionPool() {
         try {
             InitialContext ic = new InitialContext();
-            dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/musicDB");
+            dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/musicstore");
         } catch (NamingException e) {
             System.err.println(e);
         }
