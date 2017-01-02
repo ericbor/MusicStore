@@ -3,10 +3,11 @@
 
 <div class="row">
   <div class="col-md-2">
-    <a href="<c:url value='/catalog/product/${random}' />">
-    <img src="/images/${random}_cover.jpg" width="175" height="175" alt="Album Image">
+    <a id="randomProduct" href="#"/> ">
+    <img src="#" width="175" height="175" alt="Album Image">
       </a>
   </div>
+
   <div class="col-md-7">
 <h3>New Arrival<br>
     <small>
@@ -30,3 +31,4 @@
 <div class="row">
   &nbsp;
   </div>
+<script src="<c:url value="/resources/js/main.js" />"></script>
