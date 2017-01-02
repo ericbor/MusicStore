@@ -1,7 +1,7 @@
 package music.business;
 
-import java.text.NumberFormat;
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.Locale;
 
 public class LineItem implements Serializable {

@@ -3,6 +3,7 @@ package music.controllers;
 import music.business.Customer;
 import music.business.Download;
 import music.business.Product;
+import music.business.Song;
 import music.dao.ProductDao;
 import music.dao.impl.CustomerDaoImpl;
 import music.dao.impl.DownloadDB;
@@ -31,7 +32,7 @@ public class CatalogController {
         this.productDao = productDao;
     }
 
-    @RequestMapping(value = "/{productCode}", method= RequestMethod.GET)
+    @RequestMapping(value = "/{productCode}", method = RequestMethod.GET)
     private String showProduct(@PathVariable String productCode, Model model) {
 
         if (productCode != null) {
@@ -42,41 +43,50 @@ public class CatalogController {
         return "/catalog/product.jsp";
     }
 
-    @RequestMapping(value = "/{productCode}/listen", method= RequestMethod.GET)
-    private String listen(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/{productCode}/listen", method = RequestMethod.GET)
+    private String listen(@PathVariable String productCode, Model model, HttpServletRequest request) {
 
         HttpSession session = request.getSession();
         Customer user = (Customer) session.getAttribute("user");
 
         // if the User object doesn't exist, check for the email cookie
-        if (user == null) {
-            Cookie[] cookies = request.getCookies();
-            String emailAddress = CookieUtil.getCookieValue(cookies, "emailCookie");
-            // if the email cookie doesn't exist, go to the registration page
-            if (emailAddress == null || emailAddress.equals("")) {
-                return "/catalog/register.jsp";
-            } else {
-                user = CustomerDaoImpl.selectCustomer(emailAddress);
-                // if a user for that email isn't in the database, 
-                // go to the registration page
-                if (user == null) {
-                    return "/catalog/register.jsp";
-                }
-                session.setAttribute("user", user);
+//        if (user == null) {
+//            Cookie[] cookies = request.getCookies();
+//            String emailAddress = CookieUtil.getCookieValue(cookies, "emailCookie");
+//            // if the email cookie doesn't exist, go to the registration page
+//            if (emailAddress == null || emailAddress.equals("")) {
+//                return "/catalog/register.jsp";
+//            } else {
+//                user = CustomerDaoImpl.selectCustomer(emailAddress);
+//                // if a user for that email isn't in the database,
+//                // go to the registration page
+//                if (user == null) {
+//                    return "/catalog/register.jsp";
+//                }
+//                session.setAttribute("user", user);
+//            }
+//        }
+
+        if (productCode != null) {
+            Product product = productDao.selectProduct(productCode);
+            model.addAttribute("product", product);
+
+//            Download download = new Download();
+//            download.setUser(user);
+//            download.setProductCode(product.getCode());
+//            DownloadDB.insert(download);
+
+            for(Song song : product.getSongList()){
+                System.out.println(song.getSongTitle());
             }
+
+            return "/catalog/" + product.getCode() + "/sound.jsp";
         }
 
-        Product product = (Product) session.getAttribute("product");
-
-        Download download = new Download();
-        download.setUser(user);
-        download.setProductCode(product.getCode());
-        DownloadDB.insert(download);
-
-        return "/catalog/" + product.getCode() + "/sound.jsp";
+        return null;
     }
 
-    @RequestMapping(value = "/register", method= RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     private String registerUser(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();

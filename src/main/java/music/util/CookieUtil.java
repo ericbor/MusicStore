@@ -1,6 +1,6 @@
 package music.util;
 
-import javax.servlet.http.*;
+import javax.servlet.http.Cookie;
 
 public class CookieUtil {
 

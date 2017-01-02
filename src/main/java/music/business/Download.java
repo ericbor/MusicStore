@@ -1,7 +1,7 @@
 package music.business;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 public class Download implements Serializable {
 

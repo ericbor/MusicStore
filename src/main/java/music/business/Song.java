@@ -6,6 +6,15 @@ public class Song implements Serializable {
 
     private Long songId;
     private String songTitle;
+    private boolean playble;
+
+    public boolean isPlayble() {
+        return playble;
+    }
+
+    public void setPlayble(boolean playble) {
+        this.playble = playble;
+    }
 
     public Long getSongId() {
         return songId;

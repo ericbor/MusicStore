@@ -122,6 +122,7 @@ public class AdminController extends HttpServlet {
             OutputStream out = response.getOutputStream();
             workbook.write(out);
             out.close();
-        } finally {}
+        } finally {
+        }
     }
 }

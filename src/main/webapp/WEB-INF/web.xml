@@ -43,9 +43,6 @@
     </servlet-mapping>
 
     <!-- define a servlet context listener -->
-    <listener>
-        <listener-class>music.util.MusicStoreContextListener</listener-class>
-    </listener>
 
     <!-- define the welcome files -->
     <welcome-file-list>
