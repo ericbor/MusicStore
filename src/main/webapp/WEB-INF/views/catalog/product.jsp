@@ -9,7 +9,7 @@
 
                 <div class="row">
                     <div class="col-md-5">
-                        <img src="<spring:url value="/resources/images/jr01_cover.jpg"/>" width="175" height="175" alt="Album Image">
+                        <img src="<spring:url value="/resources/images/${product.code}_cover.jpg"/>" width="175" height="175" alt="Album Image">
                     </div>
                     <div class="col-md-5">
                         <h2>${product.artistName}</h2>

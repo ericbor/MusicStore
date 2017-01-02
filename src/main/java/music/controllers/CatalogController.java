@@ -20,19 +20,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/catalog/product")
+@RequestMapping("/catalog")
 public class CatalogController {
     ProductDao productDao;
-
-    public ProductDao getProductDao() {
-        return productDao;
-    }
-
     public void setProductDao(ProductDao productDao) {
         this.productDao = productDao;
     }
 
-    @RequestMapping(value = "/{productCode}", method = RequestMethod.GET)
+    @RequestMapping(value = "/main", method = RequestMethod.GET)
+    private String showCatalog() {
+        return "/catalog/index";
+    }
+
+    @RequestMapping(value = "/product/{productCode}", method = RequestMethod.GET)
     private String showProduct(@PathVariable String productCode, Model model) {
 
         if (productCode != null) {
@@ -43,7 +43,7 @@ public class CatalogController {
         return "/catalog/product";
     }
 
-    @RequestMapping(value = "/{productCode}/listen", method = RequestMethod.GET)
+    @RequestMapping(value = "/product/{productCode}/listen", method = RequestMethod.GET)
     private String listen(@PathVariable String productCode, Model model, HttpServletRequest request) {
 
         HttpSession session = request.getSession();
@@ -86,7 +86,7 @@ public class CatalogController {
         return null;
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/product/register", method = RequestMethod.POST)
     private String registerUser(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();

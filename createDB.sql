@@ -97,13 +97,13 @@ CREATE TABLE Product(
 INSERT INTO Product VALUES 
   ('1', '8601', '86 (the band) - True Life Songs and Pictures',
   'The debut album from 86 (the band), True Life Songs and Pictures rocks and twangs in equal measure. Filled with banjo, one-string bass, fiddle, and 3-part harmonies, this semi-rock, semi-country, semi-bluegrass album covers a lot of ground.',
-  '14.95'),
+  '11.95'),
   ('2', 'pf01', 'Paddlefoot - The first CD',
   'This 68-minute opus from San Francisco''s Paddlefoot doesn''t pull any punches.  The result is somewhere between The Pogues, Camper Van Beethoven, and Uncle Tupelo.',
   '12.95'),
   ('3', 'pf02', 'Paddlefoot - The second CD',
   'The second CD from San Francisco''s Paddlefoot finds the band maturing as it roams through much of the same musical terrain as the previous CD. While this album occasionally rocks, it also has its introspective and bittersweet moments.',
-  '14.95'),
+  '13.95'),
   ('4', 'jr01', 'Joe Rut - Genuine Wood Grained Finish',
   'The debut album from Joe Rut rambles from Byrds-esque folk pop of "Filter" to the country sounds of "Find My Way Marie" to psychedelic Brit-pop tunes like "A Place In All This." This well-crafted album is unique and cohesive, revealing its many layers on repeated listens.',
   '14.95');
@@ -152,8 +152,36 @@ INSERT INTO Song VALUES
   ('30', '2', 'Amatxi Smiled', '0'),
   ('31', '2', 'Yeah', '0'),
   ('32', '2', 'Dashboard Waltz', '0'),
-  ('33', '2', 'Rock and Roll Scene', '0');
+  ('33', '2', 'Rock and Roll Scene', '0'),
   
+  ('34', '3', 'Neon Lights', '1'),
+  ('35', '3', 'Just About Midnight', '0'),
+  ('36', '3', 'Tank Hill', '1'),
+  ('37', '3', 'et the Possums Play Possum', '0'),
+  ('38', '3', 'Find Me', '0'),
+  ('39', '3', 'Take a Picture', '0'),
+  ('40', '3', 'Billy Banjo', '0'),
+  ('41', '3', 'Most of the Time', '0'),
+  ('42', '3', 'Armenian Wedding', '0'),
+  ('43', '3', 'West Portal', '0'),
+  ('44', '3', 'Twist Away', '0'),
+  ('45', '3', 'Kern County Waltz', '0'),
+  ('46', '3', 'Distance', '0'),
+  ('47', '3', 'Sunshine on the Trees', '0'),
+  
+  ('48', '1', 'How to Get There', '0'),
+  ('49', '1', 'You Are a Star', '1'),
+  ('50', '1', 'Don"t Make No Difference', '1'),
+  ('51', '1', 'Unidentified Fiddling Object', '0'),
+  ('52', '1', 'Beat Up Old Car', '0'),
+  ('53', '1', 'Wildflowers', '0'),
+  ('54', '1', 'What You Whistle When You Walk Home', '0'),
+  ('55', '1', 'Three Sheets to the Wind', '0'),
+  ('56', '1', 'Singin" Drunk', '0'),
+  ('57', '1', 'Morning Sun', '0'),
+  ('58', '1', 'Don"t Close Your Eyes', '0');
+  
+ 
 CREATE TABLE Download (
     DownloadID INT NOT NULL AUTO_INCREMENT,
     UserID INT NOT NULL,

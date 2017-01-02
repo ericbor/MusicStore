@@ -1,9 +1,9 @@
-<jsp:include page="/includes/header.jsp" />
+<jsp:include page="../includes/header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="container">
     <div class="jumbotron">
-        <a href="<c:url value='/admin' />">
+        <a href="<c:url value='../admin' />">
             <h2>Admin Menu</h2>
         </a>
 
@@ -20,4 +20,4 @@
 
 </div>
 
-<jsp:include page="/includes/footer.jsp" />
+<jsp:include page="../includes/footer.jsp" />
