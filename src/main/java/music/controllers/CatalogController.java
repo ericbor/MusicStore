@@ -40,7 +40,7 @@ public class CatalogController {
             model.addAttribute("product", product);
         }
 
-        return "/catalog/product.jsp";
+        return "/catalog/product";
     }
 
     @RequestMapping(value = "/{productCode}/listen", method = RequestMethod.GET)
@@ -80,7 +80,7 @@ public class CatalogController {
                 System.out.println(song.getSongTitle());
             }
 
-            return "/catalog/" + product.getCode() + "/sound.jsp";
+            return "/catalog/" + product.getCode() + "/sound";
         }
 
         return null;
@@ -117,7 +117,7 @@ public class CatalogController {
         response.addCookie(emailCookie);
 
         Product product = (Product) session.getAttribute("product");
-        String url = "/catalog/" + product.getCode() + "/sound.jsp";
+        String url = "/catalog/" + product.getCode() + "/sound";
         return url;
     }
 }

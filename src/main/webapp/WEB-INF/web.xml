@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app
-        version="3.0"
-        xmlns="http://java.sun.com/xml/ns/javaee"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+    <display-name>Some Music Storet</display-name>
 
-    <display-name>Some Music Store</display-name>
     <description>pet project</description>
 
     <!-- define a context initialization parameter -->
@@ -47,7 +43,6 @@
     <!-- define the welcome files -->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
-        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
     <!-- Define two security roles -->
@@ -79,25 +74,31 @@
     </session-config>
 
     <!-- Spring -->
+
+    <!--for root application context-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/spring/applicationContext.xml</param-value>
+    </context-param>
+
     <servlet>
-        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
+            <param-value>/WEB-INF/spring/dispatcher-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/applicationContext.xml</param-value>
-    </context-param>
     <!-- Spring -->
 
 

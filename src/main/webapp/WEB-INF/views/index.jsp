@@ -1,4 +1,4 @@
-<jsp:include page="/includes/header.jsp" />
+<jsp:include page="includes/header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="container">
@@ -14,7 +14,7 @@
             to order it. Most of the albums we carry aren't available anywhere else!</p>
     </div>
 
-    <jsp:include page="/includes/pre_footer_menu.jsp" />
+    <jsp:include page="includes/pre_footer_menu.jsp" />
 </div>
 
-<jsp:include page="/includes/footer.jsp" />
+<jsp:include page="includes/footer.jsp" />

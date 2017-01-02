@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <jsp:include page="/includes/pre_footer_menu.jsp" />
+  <jsp:include page="/WEB-INF/views/includes/pre_footer_menu.jsp" />
 </div>
 
 <jsp:include page="/includes/footer.jsp" />

@@ -80,7 +80,7 @@ public class Product implements Serializable {
     }
 
     public String getImageURL() {
-        String imageURL = "/images/" + code + "_cover.jpg";
+        String imageURL = "/resources/images/" + code + "_cover.jpg";
         return imageURL;
     }
 

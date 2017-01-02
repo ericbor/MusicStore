@@ -1,4 +1,4 @@
-<jsp:include page="/includes/header.jsp" />
+<jsp:include page="../includes/header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="container">
@@ -16,7 +16,7 @@
         <p><a href="product/jr01">Genuine Wood Grained Finish</a></p>
     </div>
 
-    <jsp:include page="/includes/pre_footer_menu.jsp" />
+    <jsp:include page="../includes/pre_footer_menu.jsp" />
 </div>
 
-<jsp:include page="/includes/footer.jsp" />
+<jsp:include page="../includes/footer.jsp" />

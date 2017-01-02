@@ -8,7 +8,7 @@
         <p>All persistent cookies for this server have been removed from this browser.</p>
     </div>
 
-    <jsp:include page="/includes/pre_footer_menu.jsp" />
+    <jsp:include page="/WEB-INF/views/includes/pre_footer_menu.jsp" />
 </div>
 
 <jsp:include page="/includes/footer.jsp" />
