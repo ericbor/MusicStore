@@ -1,13 +1,10 @@
 package music.controllers;
 
 import music.business.Customer;
-import music.business.Download;
 import music.business.Product;
 import music.business.Song;
 import music.dao.ProductDao;
 import music.dao.impl.CustomerDaoImpl;
-import music.dao.impl.DownloadDB;
-import music.util.CookieUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,7 +77,7 @@ public class CatalogController {
                 System.out.println(song.getSongTitle());
             }
 
-            return "/catalog/" + product.getCode() + "/sound";
+            return "/catalog/sound";
         }
 
         return null;
