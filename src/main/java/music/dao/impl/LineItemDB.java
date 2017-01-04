@@ -29,7 +29,7 @@ public class LineItemDB {
         try {
             ps = connection.prepareStatement(query);
             ps.setLong(1, invoiceID);
-            ps.setLong(2, lineItem.getProduct().getId());
+            ps.setLong(2, lineItem.getProduct().getProductId());
             ps.setInt(3, lineItem.getQuantity());
             return ps.executeUpdate();
         } catch (SQLException e) {

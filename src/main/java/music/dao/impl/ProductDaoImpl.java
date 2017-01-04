@@ -1,13 +1,15 @@
 package music.dao.impl;
 
 import music.business.Product;
-import music.dao.DBUtil;
+import music.business.Song;
 import music.dao.ProductDao;
 import music.dao.SongDao;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,148 +17,96 @@ import java.util.List;
 
 public class ProductDaoImpl implements ProductDao {
 
-    private DataSource dataSource;
-    private SongDao songDao;
-
-    public void setSongDao(SongDao songDao) {
-        this.songDao = songDao;
+    private JdbcTemplate jdbcTemplate;
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+    private final String SELECT_BY_CODE = "SELECT Product.*, Song.SongTitle, Song.Playble FROM Product JOIN Song ON Product.ProductId=Song.ProductID WHERE Product.ProductCode  = ?";
+    private final String SELECT_BY_ID = "SELECT Product.*, Song.SongTitle, Song.Playble FROM Product JOIN Song ON Product.ProductId=Song.ProductID WHERE Product.ProductId = ?";
+    private final String SELECT_ALL = "SELECT * FROM Product JOIN Song ON Product.ProductId=Song.ProductID";
 
-    private final String SELECT_BY_CODE = "SELECT * FROM Product WHERE ProductCode = ?";
-    private final String SELECT_BY_ID = "SELECT * FROM Product WHERE ProductID = ?";
-    private final String SELECT_ALL = "SELECT * FROM Product";
-
-    //This method returns null if a product isn't found.
+/*    //This method returns null if a product isn't found.
     public Product selectProduct(String productCode) {
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = null;
-        try {
-            connection = dataSource.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        try {
-            ps = connection.prepareStatement(SELECT_BY_CODE);
-            ps.setString(1, productCode);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                Product p = new Product();
-                p.setId(rs.getLong("ProductID"));
-                p.setCode(rs.getString("ProductCode"));
-                p.setTitle(rs.getString("ProductTitle"));
-                p.setDescription(rs.getString("ProductDescription"));
-                p.setPrice(rs.getDouble("ProductPrice"));
-                p.setSongList(songDao.getAllSongs(p.getId()));
-                return p;
-            } else {
-                return null;
-            }
-        } catch (SQLException e) {
-            System.err.println(e);
-            return null;
-        } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
-
-            //pool.freeConnection(connection);
-            try {
-                connection.close();
-            } catch (SQLException sqle) {
-                System.err.println(sqle);
-            }
-
-        }
+        Product product = (Product) jdbcTemplate.queryForObject(SELECT_BY_CODE, new Object[]{productCode}, new BeanPropertyRowMapper(Product.class));
+        return product;
     }
 
-    //This method returns null if a product isn't found.
+    //BeanPropertyRowMapper - no need for cutsom RowMapper
     public Product selectProduct(long productID) {
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = null;
-        try {
-            connection = dataSource.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        try {
-            ps = connection.prepareStatement(SELECT_BY_ID);
-            ps.setLong(1, productID);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                Product p = new Product();
-                p.setId(rs.getLong("ProductID"));
-                p.setCode(rs.getString("ProductCode"));
-                p.setTitle(rs.getString("ProductTitle"));
-                p.setDescription(rs.getString("ProductDescription"));
-                p.setPrice(rs.getDouble("ProductPrice"));
-                p.setSongList(songDao.getAllSongs(productID));
-                return p;
-            } else {
-                return null;
-            }
-        } catch (SQLException e) {
-            System.err.println(e);
-            return null;
-        } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
-            //pool.freeConnection(connection);
-            try {
-                connection.close();
-            } catch (SQLException sqle) {
-                System.err.println(sqle);
-            }
-
-        }
+        Product product = (Product) jdbcTemplate.queryForObject(SELECT_BY_ID, new Object[]{productID}, new BeanPropertyRowMapper(Product.class));
+        return product;
     }
 
     //This method returns null if a product isn't found.
     public List<Product> selectProducts() {
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = null;
-        try {
-            connection = dataSource.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        List<Product> products = jdbcTemplate.query(SELECT_ALL, new BeanPropertyRowMapper(Product.class));
+        return products;
+    }*/
 
-        try {
-            ps = connection.prepareStatement(SELECT_ALL);
-            rs = ps.executeQuery();
-            ArrayList<Product> products = new ArrayList<Product>();
-            while (rs.next()) {
-                Product p = new Product();
-                p.setCode(rs.getString("ProductCode"));
-                p.setTitle(rs.getString("ProductTitle"));
-                p.setDescription(rs.getString("ProductDescription"));
-                p.setPrice(rs.getDouble("ProductPrice"));
-                p.setSongList(songDao.getAllSongs(p.getId()));
-                products.add(p);
-            }
-            return products;
-        } catch (SQLException e) {
-            System.err.println(e);
-            return null;
-        } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
-            //pool.freeConnection(connection);
-            try {
-                connection.close();
-            } catch (SQLException sqle) {
-                System.err.println(sqle);
-            }
-        }
+    public final static RowMapper<Product> productMapper = BeanPropertyRowMapper.newInstance(Product.class);
+    public final static RowMapper<Song> songMapper = BeanPropertyRowMapper.newInstance(Song.class);
+
+    public Product selectProduct(long productID) {
+        return jdbcTemplate.query(SELECT_BY_ID,
+                new ResultSetExtractor<Product>() {
+                    public Product extractData(ResultSet rs) throws SQLException, DataAccessException {
+                        Product product = null;
+                        int row = 0;
+                        while (rs.next()) {
+                            if (product == null) {
+                                product = productMapper.mapRow(rs, row);
+                            }
+                            product.addSong(songMapper.mapRow(rs, row));
+                            row++;
+                        }
+                        return product;
+                    }
+
+                }, productID);
+    }
+
+    public Product selectProduct(String productCode) {
+        return jdbcTemplate.query(SELECT_BY_CODE,
+                new ResultSetExtractor<Product>() {
+                    public Product extractData(ResultSet rs) throws SQLException, DataAccessException {
+                        Product product = null;
+                        int row = 0;
+                        while (rs.next()) {
+                            if (product == null) {
+                                product = productMapper.mapRow(rs, row);
+                            }
+                            product.addSong(songMapper.mapRow(rs, row));
+                            row++;
+                        }
+                        return product;
+                    }
+
+                }, productCode);
+    }
+
+    public List<Product> selectProducts() {
+        return jdbcTemplate.query(SELECT_ALL,
+                new ResultSetExtractor<List<Product>>() {
+                    public List<Product> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                        List<Product> products = new ArrayList<Product>();
+                        Long productId = null;
+                        Product product = null;
+                        int orderIdx = 0;
+                        int itemIdx = 0;
+                        while (rs.next()) {
+                            // first row or when order changes
+                            if (product == null || !productId.equals(rs.getLong("productId"))) {
+                                productId = rs.getLong("productId");
+                                product = productMapper.mapRow(rs, orderIdx++);
+                                itemIdx = 0;
+                                products.add(product);
+                            }
+                            product.addSong(songMapper.mapRow(rs, itemIdx++));
+                        }
+                        return products;
+                    }
+
+                });
     }
 }

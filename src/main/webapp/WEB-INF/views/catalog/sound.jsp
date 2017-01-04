@@ -18,7 +18,7 @@
                                     <a href="#" class="list-group-item disabled">${loop.index+1}. ${song.songTitle}</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="<spring:url value="/resources/sounds/${product.code}/${loop.index+1}_song.mp3"/>" class="list-group-item">${loop.index+1}. ${song.songTitle}</a>
+                                    <a href="<spring:url value="/resources/sounds/${product.productCode}/${loop.index+1}_song.mp3"/>" class="list-group-item">${loop.index+1}. ${song.songTitle}</a>
                                 </c:otherwise>
                             </c:choose>
                         </c:forEach>

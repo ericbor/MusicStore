@@ -2,17 +2,76 @@ package music.business;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class Product implements Serializable {
 
     private Long productId;
-    private String code;
-    private String title;
-    private String description;
-    private double price;
-    private List<Song> songList;
+    private String productCode;
+    private String productTitle;
+    private String productAlbum;
+    private String productType;
+    private String productDescription;
+    private double productPrice;
+    private List<Song> songList = new ArrayList<Song>();
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public String getProductTitle() {
+        return productTitle;
+    }
+
+    public void setProductTitle(String productTitle) {
+        this.productTitle = productTitle;
+    }
+
+    public String getProductAlbum() {
+        return productAlbum;
+    }
+
+    public void setProductAlbum(String productAlbum) {
+        this.productAlbum = productAlbum;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
 
     public List<Song> getSongList() {
         return songList;
@@ -22,80 +81,14 @@ public class Product implements Serializable {
         this.songList = songList;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Product() {
-    }
-
-    public Long getId() {
-        return productId;
-    }
-
-    public void setId(Long productId) {
-        this.productId = productId;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getArtistName() {
-        return title.substring(0, title.indexOf(" - "));
-    }
-
-    public String getAlbumName() {
-        return title.substring(title.indexOf(" - ") + 3);
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public double getPrice() {
-        return price;
+    public void addSong(Song song) {
+        songList.add(song);
     }
 
     public String getPriceCurrencyFormat() {
         Locale usa = new Locale("en", "US");
         NumberFormat currency = NumberFormat.getCurrencyInstance(usa);
-        return currency.format(price);
+        return currency.format(productPrice);
     }
 
-    public String getImageURL() {
-        String imageURL = "/resources/images/" + code + "_cover.jpg";
-        return imageURL;
-    }
-
-    public String getProductType() {
-        return "Audio CD";
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", code='" + code + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                '}';
-    }
 }

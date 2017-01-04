@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-md-2">
-    <a id="randomProduct" href="#"/> ">
+    <a id="randomProduct" href="#"/>
     <img src="#" width="175" height="175" alt="Album Image">
       </a>
   </div>

@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/catalog")
 public class CatalogController {
     ProductDao productDao;
+
     public void setProductDao(ProductDao productDao) {
         this.productDao = productDao;
     }
@@ -73,7 +74,8 @@ public class CatalogController {
 //            download.setProductCode(product.getCode());
 //            DownloadDB.insert(download);
 
-            for(Song song : product.getSongList()){
+            for (Song song : product.getSongList()) {
+                System.out.println("**************");
                 System.out.println(song.getSongTitle());
             }
 
@@ -114,7 +116,7 @@ public class CatalogController {
         response.addCookie(emailCookie);
 
         Product product = (Product) session.getAttribute("product");
-        String url = "/catalog/" + product.getCode() + "/sound";
+        String url = "/catalog/" + product.getProductCode() + "/sound";
         return url;
     }
 }

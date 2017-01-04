@@ -88,6 +88,8 @@ CREATE TABLE Product(
     ProductID INT NOT NULL AUTO_INCREMENT,
     ProductCode VARCHAR(10) NOT NULL DEFAULT '',
     ProductTitle VARCHAR(100) NOT NULL DEFAULT '',
+	ProductAlbum VARCHAR(100) NOT NULL DEFAULT '',
+	ProductType VARCHAR(50) NOT NULL DEFAULT '',
     ProductDescription VARCHAR(1000) NOT NULL DEFAULT '',
     ProductPrice DECIMAL(7,2) NOT NULL DEFAULT '0.00',
   
@@ -95,19 +97,19 @@ CREATE TABLE Product(
 );
   
 INSERT INTO Product VALUES 
-  ('1', '8601', '86 (the band) - True Life Songs and Pictures',
+  ('1', '8601', '86 (the band)', 'True Life Songs and Pictures', 'Audio CD',
   'The debut album from 86 (the band), True Life Songs and Pictures rocks and twangs in equal measure. Filled with banjo, one-string bass, fiddle, and 3-part harmonies, this semi-rock, semi-country, semi-bluegrass album covers a lot of ground.',
   '11.95'),
-  ('2', 'pf01', 'Paddlefoot - The first CD',
+  ('2', 'pf01', 'Paddlefoot', 'The first CD', 'Audio CD',
   'This 68-minute opus from San Francisco''s Paddlefoot doesn''t pull any punches.  The result is somewhere between The Pogues, Camper Van Beethoven, and Uncle Tupelo.',
   '12.95'),
-  ('3', 'pf02', 'Paddlefoot - The second CD',
+  ('3', 'pf02', 'Paddlefoot', 'The second CD', 'Audio CD',
   'The second CD from San Francisco''s Paddlefoot finds the band maturing as it roams through much of the same musical terrain as the previous CD. While this album occasionally rocks, it also has its introspective and bittersweet moments.',
   '13.95'),
-  ('4', 'jr01', 'Joe Rut - Genuine Wood Grained Finish',
+  ('4', 'jr01', 'Joe Rut', 'Genuine Wood Grained Finish', 'Audio CD',
   'The debut album from Joe Rut rambles from Byrds-esque folk pop of "Filter" to the country sounds of "Find My Way Marie" to psychedelic Brit-pop tunes like "A Place In All This." This well-crafted album is unique and cohesive, revealing its many layers on repeated listens.',
   '14.95');
-
+  
 CREATE TABLE Song(
   SongID INT NOT NULL AUTO_INCREMENT,
   ProductID INT NOT NULL,

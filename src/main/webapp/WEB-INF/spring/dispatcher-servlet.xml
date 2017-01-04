@@ -20,12 +20,11 @@
     </bean>
 
     <bean id="songDao" class="music.dao.impl.SongDaoImpl">
-        <property name="dataSource" ref="dataSource" />
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
 
     <bean id="productDao" class="music.dao.impl.ProductDaoImpl">
-        <property name="dataSource" ref="dataSource" />
-        <property name="songDao" ref="songDao" />
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
 
 
@@ -44,18 +43,8 @@
         <property name="password" value="admin" />
     </bean>
 
-    <!--<bean id="measurementInterceptor" class="music.controllers.MeasurementInterceptor" />
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
-    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-        <property name="interceptors">
-            <list>
-                <ref bean="measurementInterceptor" />
-            </list>
-        </property>
-    </bean>-->
-
-    <mvc:interceptors>
-        <bean class="music.controllers.MeasurementInterceptor" />
-    </mvc:interceptors>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
 
 </beans>
