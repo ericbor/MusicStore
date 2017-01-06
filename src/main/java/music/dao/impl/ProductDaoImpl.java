@@ -3,13 +3,13 @@ package music.dao.impl;
 import music.business.Product;
 import music.business.Song;
 import music.dao.ProductDao;
-import music.dao.SongDao;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
+import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,8 +18,8 @@ import java.util.List;
 public class ProductDaoImpl implements ProductDao {
 
     private JdbcTemplate jdbcTemplate;
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public void setDataSource(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     private final String SELECT_BY_CODE = "SELECT Product.*, Song.SongTitle, Song.Playble FROM Product JOIN Song ON Product.ProductId=Song.ProductID WHERE Product.ProductCode  = ?";
